@@ -1,0 +1,74 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div>
+    <form class="create-form">
+        <div class="create-form-input">
+            <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="create-form-input">
+            <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="create-form-input">
+            <input type="text" id="full_name" placeholder="Full Name">
+        </div>
+        <div>
+            <label for="checkbox">Is_Active</label>
+            <input type="checkbox">
+        </div>
+
+        <div class="create-form-input">
+            {{ form.role_id }}
+            {% if form.role_id.errors %}
+            <select name="Role" id="role_id" aria-placeholder="Select Role">
+                {% for error in form.role_id.errors %}
+                <option value="Select Role">Select Role</option>
+                <option value="gender">{{ error }}</option>
+                {% endfor %}
+            </select>
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.password }}
+            {% if form.password.errors %}
+            <input type="password" id="password" placeholder="Password" required>
+            {% for error in form.password.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.password }}
+            {% if form.password.errors %}
+            <input type="password" in="confirm_password" placeholder="Confirm Password" required>
+            {% for error in form.password.errors %}
+                 <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="create-form-button">
+            <input type="submit" id="change" value="Change">
+        </div>
+        <div class="create_form-button">
+            <a href="{{ url_for('users.index') }}">
+                <input type="submit" id="cancel" value="Cancel">
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

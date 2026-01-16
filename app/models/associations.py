@@ -1,0 +1,23 @@
+from extensions import db
+from datetime import datetime
+
+# User permission table
+user_roles = db.Table('user_roles',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('role_id', db.Integer, db.ForeignKey('roles.id'), primary_key=True),
+    db.Column('created_at', db.DateTime, default=datetime.utcnow())
+)
+
+# Role permission table
+role_permissions = db.Table('role_permissions',
+    db.Column('role_id', db.Integer, db.ForeignKey('roles.id'), primary_key=True),
+    db.Column('permission_id', db.Integer, db.ForeignKey('permissions.id'), primary_key=True),
+    db.Column('created_at', db.DateTime, default=datetime.utcnow())
+)
+# Module permission table
+module_permissions = db.Table(
+    "module_permissions",
+    db.Column("module_id", db.Integer, db.ForeignKey("modules.id"), primary_key=True),
+    db.Column("permission_id", db.Integer, db.ForeignKey("permissions.id"), primary_key=True),
+    db.Column("created_at", db.DateTime, default=datetime.utcnow())
+)

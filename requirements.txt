@@ -1,0 +1,14 @@
+Flask
+Flask-Migrate
+pydantic_settings
+email-validator
+Werkzeug
+psycopg2-binary
+python-dotenv
+SQLAlchemy
+Flask-SQLAlchemy
+Flask-Login
+Flask-WTF
+pydantic
+WTForms
+Oracledb

@@ -1,0 +1,41 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="button-submit">
+    <button type="submit">
+        <a href="{{ url_for('modules.create', module_id=module.id) }}">Add Module</a>
+    </button>
+</div>
+{% for module in modules %}
+<div class="row-user">
+    <div class="image-view">
+        <img src="/app/static/images/profile.jpeg" alt="images">
+    </div>
+    <div class="list-user">
+        <ul>
+            <li>>{{ module.name }}</li>
+            <li>{{ module.description }}</li>
+            <li>{{ module.permissions | length }}</li>
+            <li>{{ module.created_at.strftime('%Y-%m-%d')}}</li>
+        </ul>
+    </div>
+    <div class="button-list">
+        <button class="button-update"><a href="{{ url_for('users.edit', user_id=user.id) }}">Edit</a></button>
+        <button class="button-delete"><a href="{{ url_for('users.delete', user_id=user.id) }}">Delete</a></button>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

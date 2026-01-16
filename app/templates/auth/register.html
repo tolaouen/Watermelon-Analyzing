@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/static/css/style.css ">
+    <title>Document</title>
+</head>
+<body>
+<div class="card-login-container">
+    <div class="card-login">
+        <div>
+            <h2>Create Account</h2>
+        </div>
+        <div>
+            <form action="{{ url_for('auth.register') }}" method="post">
+                <div class="form-login-flex">
+                    <div class="form-login">
+                        <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-login">
+                        <input type="text" id="username" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-login">
+                        <input type="email" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-login">
+                        <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="form-login-pwd">
+                        <input class="form-pwd" type="password" name="password" id="pwd" placeholder="Password" required>
+                        <input type="checkbox" onclick="pwd.type = this.checked? 'text' : 'password'">
+                    </div>
+                    <div class="form-login-pwd">
+                        <input class="form-pwd" type="password" name="confirm_password" id="confirm_pwd" placeholder="Confirm Password" required>
+                        <input type="checkbox" onclick="confirm_pwd.type = this.checked? 'text' : 'password'">
+                    </div>
+                    <div class="form-login">
+                        <button type="submit">Sign Up</button>
+                    </div>
+                    <div class="form-login-register">
+                        <a href="{{ url_for('auth.login') }}">Login</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

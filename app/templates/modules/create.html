@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div>
+    <form class="create-form" method="post" novalidate>
+        <div class="create-form-input">
+            {{ form.name }}
+            {% if form.code.errors %}
+            <input type="text" id="name" placeholder="Name" required>
+            {% for error in form.name.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.description }}
+            {% if form.description.errors %}
+            <input type="text" id="description" placeholder="Description" required>
+            {% for error in form.description.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-button">
+            <input type="submit" id="save" value="Save">
+        </div>
+        <div class="create-form-button">
+            <a href="{{ url_for(' modules.index ')}}">
+                <input type="submit" id="cancel" value="Cancel">
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

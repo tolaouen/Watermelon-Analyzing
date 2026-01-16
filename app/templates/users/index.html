@@ -1,0 +1,50 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="button-submit">
+    <button type="submit">
+        <a href="{{ url_for('users.create', user_id=user.id) }}">Add User</a>
+    </button>
+</div>
+
+{% for user in users %}
+<div class="row-user">
+    <div class="image-view">
+        <img src="/app/static/images/profile.jpeg" alt="images">
+    </div>
+    <div class="list-user">
+        <ul>
+            <li>>{{ user.full_name }}</li>
+            <li>{{ user.email }}</li>
+            <li><a href="{{ url_for('users.detail', user_id=user.id) }}">{{ user.username }}</a></li>
+            <li>
+                {% if user.is_active %} 
+                <span>✅</span>
+                {% else %}
+                <span>❌</span>
+                {% endif %}
+            </li>
+            <li>{{ user.created_at.strftime('%Y-%m-%d') }}</li>
+        </ul>
+        
+    </div>
+    <div class="button-list">
+        <button class="button-update"><a href="{{ url_for('users.edit', user_id=user.id) }}">Edit</a></button>
+        <button class="button-delete"><a href="{{ url_for('users.delete', user_id=user.id) }}">Delete</a></button>
+    </div>  
+</div>
+{% endfor %}
+
+{% endblock %}

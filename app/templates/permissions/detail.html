@@ -1,0 +1,42 @@
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="list-button">
+    <div class="list-view-role">
+        <h2>Permission Detail</h2>
+    </div>
+    <div class="list-view-button">
+        <button class="button-edit">
+            <a href="{{ url_for('permissions.edit', permission_id=permission.id) }}">Edit</a>
+        </button>
+        <button type="submit" class="button-delete-confirm">
+            Delete
+        </button>
+        <button class="button-cancel">
+            <a href="{{ url_for('permissions.index') }}">⏎ Back</a>
+        </button>
+    </div>
+</div>
+
+<div class="card-detail-all">
+    <div class="card-detail">
+        <ul>
+            <li><strong>Code: </strong>{{ permission.code }}</li>
+            <li><strong>Name: </strong>{{ permission.name}}</li>
+            <li><strong>Module: </strong>{{ permission.modules.name }}</li>
+            <li><strong>Description: </strong>{{ permission.description }}</li>
+        </ul>
+    </div>
+</div>

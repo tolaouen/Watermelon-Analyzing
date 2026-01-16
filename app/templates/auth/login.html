@@ -1,0 +1,31 @@
+{% extends "layout/base.html" %}
+{% block content %}
+<body>
+<div class="card-login-container">
+    <div class="card-login">
+        <div>
+            <h2>Login Account</h2>
+        </div>
+        <div>
+            <form method="post" action="{{ url_for('auth.login') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <div class="form-login-flex">
+                        <div class="form-login">
+                            <input type="text" name="username" id="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-login-pwd">
+                            <input class="form-pwd" type="password" name="password" id="pwd" placeholder="Password" required>
+                            <input type="checkbox" onclick="pwd.type = this.checked? 'text' : 'password'">
+                        </div>
+                        <div class="form-login">
+                            <button type="submit">Login</button>
+                        </div>
+                        <div class="form-login-register">
+                            <a href="{{ url_for('auth.register') }}">Register</a>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCom2</title>
+    <link rel="stylesheet" href="{{ url_for( /app/static/css/style.css ) }}">
+</head>
+<body>
+    <main>
+        <aside class="asidenav">
+            
+                <div class="profile-status">
+                    <div class="profile-name-status">
+                        <h3>{{ current_user.full_name }}</h3>
+                        <small>{{ current_user.username }} : {{ current_user.role_id }}</small>
+                    </div>
+                    <div>
+                        <img src="/app/static/images/profile.jpeg" alt="Images">
+                    </div>
+                    
+                </div>
+                <div>
+                    <div class="aside-link">
+                        <ul>
+                            <li><a href="#">Dashboards</a></li>
+                            <li><a href="#">Diseases</a></li>
+                            <li><a href="#">Analysis</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="button-logout">
+                        <button type="submit"><a href="{{ url_for('auth.logout')}}">Logout</a></button>
+                    </div>
+              
+            </div>
+        </aside>
+    </main>
+
+    <!-- Section extend to other page -->
+    <section class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+        {% block content %}{% endblock % }
+    </section>
+
+</body>
+</html>

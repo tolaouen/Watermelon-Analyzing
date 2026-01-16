@@ -1,0 +1,48 @@
+{% extends "layout/base.html" %}
+
+{% block content % }
+    
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div>
+    <div class="card-content-delete">
+        <div class="card-content-delete-desc">
+            <h4>Confirm Delete</he>
+            <p>Are you sure delete this role? {{ role.name }}</p>
+        </div>
+        <div>
+            {% if role.users %}
+            <div class="card-delete-header">
+                <strong>Note:</strong> This role is currently assigned to 
+                <strong>{{ role.users|length }}</strong> user{{ 's' if role.users|length != 1 else '' }}.
+                {% if role.users|length > 0 %}
+                <ul>
+                    {% for user in role.users[:5] %}
+                    <li>{{ user.username }}</li>
+                    {% endfor %}
+                    {% if role.users|length > 5 %}
+                    <li>... and {{ role.users|length - 5 }} more</li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+         <div class="card-button">
+            <button class="button-cancel"><a href="{{ url_for('roles.index') }}">Cancel</a></button>
+            <button class="button-delete-confirm" type="submit">Delete</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,537 @@
+* {
+    background-color: white;
+    color: black;
+}
+.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.asidenav {
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    width: 150px;
+    position: fixed;
+    top: 0;
+    right: 5px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 5px 0 2px rgba(0,0,0,0.1);
+}
+.profile-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+}
+.profile-status img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.profile-name-status {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+}
+.profile-name-status h3 {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0;
+}
+.profile-name-status small {
+    font-size: 12px;
+    margin: 0;
+    color: rgb(116, 113, 113);
+}
+
+
+.aside-link {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.aside-link ul{ 
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+.aside-link ul li {
+    margin-bottom: 15px;
+}
+.aside-link ul li a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+.aside-link ul li a:hover {
+    color: #555;
+} 
+
+.aside-link ul li a.active {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.button-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    margin-top: 100px
+}
+
+.button-logout button{
+    background-color: #ff4d4d;
+    color: white;
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container {
+    margin-right: 100px;
+    margin-left: 40px;
+    padding: 20px;
+}
+
+/* users/index.html */
+.nav-bar {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.nav-link ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.nav-link li {
+    list-style: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+.nav-link a {
+    color: black;
+    text-decoration: none;
+}
+.button-submit {
+    margin-left: 30px;
+}
+.button-submit button {
+    background-color: rgb(56, 71, 165);
+    color: white;
+    border-radius: 5px;
+}
+.row-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    left: 100px;
+    margin-top: 40px;
+    border-bottom: 1px dotted black;
+    width: 700px;
+}
+.image-view {
+    position: relative;
+    left: 30px;
+}
+.image-view img {
+    width: 30px;
+    padding: 0;
+    height: 30px;
+    object-fit: cover;
+}
+.list-user ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+.list-user li {
+    list-style: none;
+    font-size: 18px;
+}
+.list-user a {
+    color: blue;
+}
+.button-list {
+    display: flex;
+    flex-direction:  row;
+    align-items: center;
+    gap: 10px;
+    margin-left: 30px;
+}
+.button-update {
+    background-color: yellow;
+    border-radius: 5px;
+    border: none;
+}
+
+.button-delete {
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+}
+/* users/create */
+.create-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.create-form-input input {
+    width: 300px;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.create-form-button input{
+    width: 315px;
+    height: 30px;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    color: white;
+}
+/* users/delete.html */
+.card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
+    width: 600px;
+    margin-left: 50px;
+}
+.card-content-head ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.card-content-head li {
+    list-style: none;
+}
+.button-content-delete {
+    border-radius: 5px;
+    border: none;
+    background-color: red;
+    width: 80px;
+    height: 30px;
+    color: white;
+    font-weight: bold;
+}
+.button-content-cancel {
+    border-radius: 5px;
+    border: none;
+    background-color: blue;
+    width: 80px;
+    height: 30px;
+    color: white;
+    font-weight: bold;
+}
+.button-content-cancel a {
+    text-decoration: none;
+    color: white;
+    border: none;
+    background-color: blue;
+}
+
+.button-content-delete:hover {
+    box-shadow: 1px 1px 9px 1px red;
+}
+.button-content-cancel:hover {
+    box-shadow: 1px 1px 9px 1px blueviolet;
+}   
+/*  Users/detail.html */
+.back-button button {
+    margin-left: 50px;
+    width: 80px;
+    height: 30px;
+    background-color: #803972;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+.back-button button:hover {
+    box-shadow: 1px 1px 9px 1px rgba(146, 47, 179, 0.901);
+}
+
+/* roles/delete.html */
+
+.card-content-delete {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: 20px;
+    box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
+    border-radius: 10px;
+    padding: 10px;
+}
+.card-content-delete-desc h4 {
+    color: red;
+    font-weight: bold;
+    font-size: 25px;
+}
+.card-content-delete-desc p {
+    color: blue;
+    font-size: 20px;
+}
+
+.card-delete-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-delete-header li {
+    list-style: none;
+}
+
+.card-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.button-cancel a{
+    background-color: rgb(97, 89, 89);
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+.button-cancel {
+    border-radius: 5px;
+    border: none;   
+    background-color: rgb(97, 89, 89);
+    width: 100px;
+    height: 30px;
+}
+.button-cancel:hover {
+    box-shadow: 1px 1px 9px 1px rgba(83, 73, 86, 0.901);
+}
+.button-delete-confirm {
+    border-radius: 5px;
+    border: none;
+    background-color: red;
+    width: 100px;
+    height: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.button-delete-confirm:hover {
+    box-shadow: 1px 1px 9px 1px red;
+}
+
+.button-edit {
+    border-radius: 5px;
+    border: none;
+    background-color: blue;
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+}
+.button-edit a {
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+}
+
+.button-edit:hover {
+    box-shadow: 1px 1px 9px 1px blueviolet;
+}
+
+/* roles/detail.html */
+.list-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+
+.list-view-role {
+    width: 400px;
+}
+.list-view-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 500px;
+    gap: 10px;
+}
+.card-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.card-view-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
+    border-radius: 10px;
+    padding: 10px;
+    width: 400px;
+    height: 150px;
+}
+.card-view-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
+    border-radius: 10px;
+    padding: 10px;
+    width: 600px;
+    height: 200px;
+
+}
+
+.desc {
+    list-style: none;
+}
+
+.card-view-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 1px 1px 9px 1px rgb(162, 170, 54);
+    border-radius: 10px;
+    padding: 20px;
+    width: 1350px;
+}
+.ul-list ul {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+.ul-list li {
+    list-style: none;
+}
+.li-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+/* Permssions/detail.html */
+
+.card-detail-all {
+    width: 1200px;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.card-detail ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.card-detail li {
+    list-style: none;
+}
+
+/* auth/login.html */
+.card-login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.card-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 500px;
+    padding: 30px;
+
+}
+.form-login-flex {
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.form-login-pwd {
+    position: relative;
+    left: 15px;
+}
+.form-pwd {
+    width: 300px;
+    height: 35px;
+    font-size: 16px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+.form-login {
+    padding: 10px;
+}
+.form-login input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 300px;
+    height: 35px;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form-login-pwd {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+.form-login button {
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+.form-login button {
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(56, 71, 165);
+    color: white;
+}
+.form-login button:hover {
+    box-shadow: 1px 1px 9px 1px rgb(56, 89, 165);
+}
+.form-login a {
+    color: blue;
+}
+.form-login-register a {
+    color: blue;
+}

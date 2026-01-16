@@ -1,0 +1,42 @@
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('users.index') }}">User</a></li>
+                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
+                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="list-button">
+    <div class="list-view-role">
+        <h2>Modules Detail</h2>
+    </div>
+    <div class="list-view-button">
+        <button class="button-edit">
+            <a href="{{ url_for('modules.edit', module_id=module.id) }}">Edit</a>
+        </button>
+        <button type="submit" class="button-delete-confirm">
+            Delete
+        </button>
+        <button class="button-cancel">
+            <a href="{{ url_for('modules.index') }}">⏎ Back</a>
+        </button>
+    </div>
+</div>
+
+<div class="card-detail-all">
+    <div class="card-detail">
+        <ul>
+            <li><strong>Name: </strong>{{ module.name }}</li>
+            <li><strong>Description: </strong>{{ module.description or "-" }}</li>
+            <li><strong>Created At: </strong>{{ module.created_at.strftime('%Y-%m-%d') }}</li>
+            <li><strong>Updated At: </strong>{{ module.updated_at.strftime('%Y-%m-%d') }}</li>
+        </ul>
+    </div>
+</div>

@@ -535,3 +535,59 @@
 .form-login-register a {
     color: blue;
 }
+
+/* Dashboard/diagnose.html */
+
+.text-h2 {
+    color: rgba(147, 66, 222, 0.812);
+    margin: 0;
+}
+
+.table-diagnose table {
+    border-collapse: collapse;
+    width: 100%;
+} 
+
+.table-diagnose th, td {
+    border: 1px solid #131212;
+    padding: 8px;
+    text-align: left;
+}
+
+.table-diagnose tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-diagnose th {
+    background-color: #4CAF50;
+    color: white;
+
+}
+
+.button-view {
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(60, 233, 83);
+}
+
+.button-view a {
+    text-decoration: none;
+    color: white;
+    background-color:rgb(60, 233, 83) ;
+
+}
+.button-view:hover {
+    box-shadow: 1px 1px 9px 1px rgb(60, 233, 83);
+}
+.text-p {
+    font-size: 25px;
+    color: gray;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+
+

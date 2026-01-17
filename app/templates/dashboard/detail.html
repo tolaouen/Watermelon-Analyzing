@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <button><a href="{{ url_for('dashboard.result') }}">⏎ Back</a></button>
+        <div>
+            <ul>
+                <li>Disease: {{ diseases.name }}</li>
+                <li>Symptoms: {{ disease.symptoms }}</li>
+                <li>Causes: {{ disease.causes }}</li>
+                <li>Treatments: {{ disease.treatments }}</li>
+                <li>Prevention: {{ disease.prevention }}</li>
+                <li>created At: {{ disease.created_at }}</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

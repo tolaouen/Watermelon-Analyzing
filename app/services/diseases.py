@@ -1,5 +1,6 @@
 from extensions import db
 from app.models.diseases import Disease
+from typing import List, Optional
 import json
 
 class DiseaseService:
@@ -46,7 +47,7 @@ class DiseaseService:
         
         for disease in diseases:
             match_score = disease.calculate_match_score(user_symptoms)
-            if match_score >= 30:  # Threshold for match
+            if match_score >= 30:  
                 results.append({
                     'id': disease.id,
                     'name': disease.name,
@@ -60,13 +61,19 @@ class DiseaseService:
         return sorted(results, key=lambda x: x['match_score'], reverse=True)
     
     @staticmethod
-    def get_all_symptoms():
+    def get_all_symptoms() -> List[Disease]:
         """Get all possible symptoms for form"""
         DiseaseService.seed_initial_diseases()
-        diseases = Disease.query.all()
+        diseases = Disease.query.filter_by(name="Anthracnose").all()
         all_symptoms = set()
 
         for disease in diseases:
             all_symptoms.update(disease.symptoms_list)
         
         return sorted(list(all_symptoms))
+    
+    @staticmethod
+    def get_disease_by_id(disease_id: int) -> Optional[Disease]:
+        return Disease.query.get(disease_id)
+    
+    

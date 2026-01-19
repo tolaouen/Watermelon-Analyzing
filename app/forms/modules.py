@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Length, ValidationError
 from extensions import db
 from app.models.modules import Module
 
-class MuduleForm(FlaskForm):
+class ModuleCreateForm(FlaskForm):
     name = StringField(
         "Module Name",
         validators=[DataRequired(), Length(min=3, max=50)],

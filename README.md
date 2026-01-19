@@ -1,15 +1,15 @@
 # Watermolon System Analysis
-Flask Microframework base server side for build API Applications
+Flask Microframework Build Web application system analyzing
 
-## Feature
+## Features
 
-- Forms Validation Login and Signup Account (Flask-Login)
-- Authentication 
-- Models Table Relationships
-- Templetes UI (HTML CSS Bootstrap Javascript)
+- Forms Validation 
+- Authentication (`Flask-Login`)
+- Models Table Relationships and storing data
+- Templetes UI (`HTML` `CSS` `Javacript`)
 - Services Handle (CRUD)
 - Routes Handle Connect Between Frontend and Backend
-- Data base connection (Oracle-db)
+- Database connection (`Sqlite`)
 
 ## Setup
 

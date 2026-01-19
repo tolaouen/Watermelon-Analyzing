@@ -23,9 +23,9 @@
                 <div>
                     <div class="aside-link">
                         <ul>
-                            <li><a href="#">Dashboards</a></li>
-                            <li><a href="#">Diseases</a></li>
-                            <li><a href="#">Analysis</a></li>
+                            <li><a href="{{ url_for('users.index') }}">Dashboards</a></li>
+                            <li><a href="{{ url_for('dashboard.diagnose')}}">Diagnoses</a></li>
+                            <li><a href="{{ url_for('dashboard.result')}}">Analysis</a></li>
                         </ul>
                     </div>
 

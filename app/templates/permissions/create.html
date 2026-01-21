@@ -1,21 +1,22 @@
-{% extends 'base.html' %}
+{% extends "layout/base.html" %}
 
 {% block content %}
 <div>
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
 </div>
 
-<div>
-    <form class="create-form" method="post" novalidate>
+<div class="create-form">
+    <form method="post" novalidate>
+        {{ form.csrf_token() }}
         <div class="create-form-input">
             {{ form.code }}
             {% if form.code.errors %}
@@ -36,24 +37,12 @@
             {% endif %}
         </div>
 
-        <div class="create-form-input">
-            {{ form.module_id }}
-            {% if form.module_id.errors %}
-            <select name="Module" id="module_id" aria-placeholder="Module">
-                {% for error in form.module_id.errors %}
-                <option value="Select Role">Select Role</option>
-                <option value="gender">{{ error }}</option>
-                {% endfor %}
-            </select>
-            {% endif %}
-        </div>
+
 
         <div class="create-form-button">
-            <input type="submit" id="save" value="Save">
-        </div>
-        <div class="create-form-button">
-            <a href="{{ url_for(' permissions.index ')}}">
-                <input type="submit" id="cancel" value="Cancel">
+            {{ form.submit(id="save", value="Save") }}
+            <a href="{{ url_for('Permission.index') }}">
+                <button type="button" id="cancel">Cancel</button>
             </a>
         </div>
     </form>

@@ -28,6 +28,11 @@ class CreatePermissionForm(FlaskForm):
         existing_permission = db.session.scalar(db.select(Permission).filter_by(name=name.data))
         if existing_permission:
             raise ValidationError("Permission name already exists. Please choose a different name.")
+
+    def validate_code(self, code):
+        existing_permission = db.session.scalar(db.select(Permission).filter_by(code=code.data))
+        if existing_permission:
+            raise ValidationError("Permission code already exists. Please choose a different code.")
         
 class UpdatePermissionForm(FlaskForm):
     name = StringField(
@@ -37,7 +42,7 @@ class UpdatePermissionForm(FlaskForm):
     )
     code = StringField(
         "Code",
-        validators={DataRequired(), Length(min=3, max=50)},
+        validators=[DataRequired(), Length(min=3, max=50)],
         render_kw={"autocomplete": "off"},
     )
     description = TextAreaField(
@@ -50,6 +55,10 @@ class UpdatePermissionForm(FlaskForm):
     def __init__(self, original_permission, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.original_permission = original_permission
+        # Set initial form data
+        self.name.data = original_permission.name
+        self.code.data = original_permission.code
+        self.description.data = original_permission.description
 
     def validate_name(self, name):
         if name.data != self.original_permission.name:
@@ -57,6 +66,13 @@ class UpdatePermissionForm(FlaskForm):
 
             if existing_permission:
                 raise ValidationError("Permission name already exists. Please choose a different name.")
+
+    def validate_code(self, code):
+        if code.data != self.original_permission.code:
+            existing_permission = db.session.scalar(db.select(Permission).filter_by(code=code.data))
+
+            if existing_permission:
+                raise ValidationError("Permission code already exists. Please choose a different code.")
 
 class DeletePermissionForm(FlaskForm):
     submit = SubmitField("Delete Permission")

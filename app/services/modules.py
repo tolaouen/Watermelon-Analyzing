@@ -45,33 +45,3 @@ class ModuleService:
 
         paginated_modules = query.order_by(Module.name).paginate(page=page, per_page=per_page, error_out=False)
         return paginated_modules
-    
-    @staticmethod
-    def get_all():
-        return Module.query.order_by(Module.name).all()
-    
-    @staticmethod
-    def get_by_id(module_id):
-        return Module.query.get(module_id)
-    
-    @staticmethod
-    def create(data):
-        new_module = Module(
-            name=data["name"],
-            description=data.get("description")
-        )
-        db.session.add(new_module)
-        db.session.commit()
-        return new_module
-    
-    @staticmethod
-    def update(module, data):
-        module.name = data["name"]
-        module.description = data.get("description")
-        db.session.commit()
-        return module
-    
-    @staticmethod
-    def delete(module): 
-        db.session.delete(module)
-        db.session.commit()

@@ -10,13 +10,13 @@ class CreateRoleForm(FlaskForm):
     name = StringField(
         "Role Name",
         validators=[DataRequired(), Length(min=3, max=50)],
-        render_kw={"placeholder": "Enter role name"},
+        render_kw={"placeholder": "Role Name"},
     )
 
     description = TextAreaField(
         "Description",
         validators=[Length(max=200)],
-        render_kw={"placeholder": "Enter role description (optional)"},
+        render_kw={"placeholder": "Description"},
     )
 
     permissions = SelectMultipleField(
@@ -27,6 +27,10 @@ class CreateRoleForm(FlaskForm):
 
     submit = SubmitField("Create Role")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.permissions.choices = [(p.id, f"{p.code} - {p.name}") for p in Permission.query.order_by(Permission.name).all()]
+
     def validate_name(self, name):
         existing_role = db.session.scalar(db.select(Role).filter_by(name=name.data))
         if existing_role:
@@ -36,12 +40,13 @@ class UpdateRoleForm(FlaskForm):
     name = StringField(
         "Role Name",
         validators=[DataRequired(), Length(min=3, max=50)],
-        render_kw={"autocomplete": "off"},
+        render_kw={"placeholder": "Role Name"},
     )
 
     description = TextAreaField(
         "Description",
         validators=[Length(max=200)],
+        render_kw={"placeholder": "Description"}
     )
 
     permissions = SelectMultipleField(
@@ -55,6 +60,11 @@ class UpdateRoleForm(FlaskForm):
     def __init__(self, original_role, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.original_role = original_role
+        self.permissions.choices = [(p.id, f"{p.code} - {p.name}") for p in Permission.query.order_by(Permission.name).all()]
+        # Set initial form data
+        self.name.data = original_role.name
+        self.description.data = original_role.description
+        self.permissions.data = [p.id for p in original_role.permissions]
 
     def validate_name(self, name):
         if name.data != self.original_role.name:

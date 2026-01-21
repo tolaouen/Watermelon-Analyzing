@@ -17,32 +17,35 @@ def create_app(config_class: type[Config] = Config):
     @login_manager.user_loader
     def load_user(user_id):
         from app.models.users import User
-        return User.query.get(int(user_id))
+        try:
+            return User.query.get(int(user_id))
+        except (ValueError, TypeError):
+            return None
 
-        from app.routes.users import user_router
-        from app.routes.roles import role_router
-        from app.routes.permissions import permission_router
-        from app.routes.diseases import disease_route
-        from app.routes.modules import module_route
-        from app.routes.auth import auth_router 
+    from app.routes.users import user_router
+    from app.routes.roles import role_router
+    from app.routes.permissions import permission_router
+    from app.routes.diseases import disease_route
+    from app.routes.modules import module_route
+    from app.routes.auth import auth_route 
 
-        app.register_blueprint(user_router)
-        app.register_blueprint(role_router)
-        app.register_blueprint(permission_router)
-        app.register_blueprint(disease_route)
-        app.register_blueprint(module_route)
-        app.register_blueprint(auth_router)
+    app.register_blueprint(user_router)
+    app.register_blueprint(role_router)
+    app.register_blueprint(permission_router)
+    app.register_blueprint(disease_route)
+    app.register_blueprint(module_route)
+    app.register_blueprint(auth_route)
 
-        @app.route("/")
-        def home():
-            return redirect(url_for("auth.login"))
+    @app.route("/")
+    def home():
+        return redirect(url_for("auth.login"))
 
-        with app.app_context:
-            from app.models.users import User
-            from app.models.roles import Role
-            from app.models.permissions import Permission
-            from app.models.diseases import Disease
-            from app.models.modules import Module
-            db.create_all()
+    with app.app_context():
+        from app.models.users import User
+        from app.models.roles import Role
+        from app.models.permissions import Permission
+        from app.models.diseases import Disease
+        from app.models.modules import Module
+        db.create_all()
             
     return app

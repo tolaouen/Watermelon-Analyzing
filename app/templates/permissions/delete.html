@@ -1,14 +1,14 @@
-{% extends "layout/base.html" }
+{% extends "layout/base.html" %}
 
 {% block content %}
     <div>
         <nav class="nav-bar">
             <div class="nav-link">
                 <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
                 </ul>
             </div>
         </nav>
@@ -23,8 +23,11 @@
             </ul>
         </div>
         <div class="card-content-button">
-            <button class="button-content-delete" type="submit">Delete</button>
-            <button class="button-content-cancel"><a href="{{ url_for('permissions.index') }}">Cancel</a></button>
+            <form method="POST" action="{{ url_for('Permission.delete', permission_id=permission.id) }}">
+                {{ form.hidden_tag() }}
+                {{ form.submit(class="button-content-delete") }}
+            </form>
+            <button class="button-content-cancel"><a href="{{ url_for('Permission.index') }}">Cancel</a></button>
         </div>
     </div>
 {% endblock %}

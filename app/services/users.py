@@ -14,7 +14,7 @@ class UserService:
         return User.query.get(user_id)
     
     @staticmethod
-    def create_user(data: dict, password: str, role_id: Optional[str] = None) -> User:
+    def create_user(data: dict, password: str, role_id: Optional[int] = None) -> User:
         user = User(
             username = data["username"],
             email = data["email"],
@@ -25,18 +25,16 @@ class UserService:
         user.set_password(password)
 
         if role_id:
-            role = db.session.get(Role, role_id)
+            role = Role.query.get(role_id)
             if role:
                 user.roles = [role]
-        
 
         db.session.add(user)
         db.session.commit()
-        db.session.refresh(user)
         return user
     
     @staticmethod
-    def update_user(user: User, data: dict, password: Optional[str] = None, role_id: Optional[str] = None) -> User:
+    def update_user(user: User, data: dict, password: Optional[str] = None, role_id: Optional[int] = None) -> User:
         user.username = data["username"]
         user.email = data["email"]
         user.full_name = data["full_name"]
@@ -46,7 +44,7 @@ class UserService:
             user.set_password(password)
         
         if role_id:
-            role = db.session.get(Role, role_id)
+            role = Role.query.get(role_id)
             if role:
                 user.roles = [role]
 

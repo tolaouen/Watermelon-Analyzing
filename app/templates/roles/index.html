@@ -1,32 +1,32 @@
-{% extend "layout/base.html" %}
+{% extends "layout/base.html" %}
 
 {% block content %}
 <div>
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
 </div>
 <div class="button-submit">
     <button type="submit">
-        <a href="{{ url_for('roles.create', role_id=role.id) }}">Add Role</a>
+        <a href="{{ url_for('Role.create') }}">Add Role</a>
     </button>
 </div>
 
 {% for role in roles %}
 <div class="row-user">
     <div class="image-view">
-        <img src="/app/static/images/profile.jpeg" alt="images">
+        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="images">
     </div>
     <div class="list-user">
         <ul>
-            <li><a href="{{ url_for('roles.detail', role_id=role.id) }}">{{ role.name }}</a></li>
+            <li><a href="{{ url_for('Role.detail', role_id=role.id) }}">{{ role.name }}</a></li>
             <li>{{ role.description or '-' }}</li>
             <li>{{ role.permissions|length }} permission{{ 's' if role.permissions|length != 1 else '' }}</li>
             <li>{{ role.created_at.strftime('%Y-%m-%d') }}</li>
@@ -34,9 +34,11 @@
         
     </div>
     <div class="button-list">
-        <button class="button-update"><a href="{{ url_for('roles.edit', role_id=role.id) }}">Edit</a></button>
-        <button class="button-delete"><a href="{{ url_for('roles.delete', role_id=role.id) }}">Delete</a></button>
+        <button class="button-update"><a href="{{ url_for('Role.edit', role_id=role.id) }}">Edit</a></button>
+        <button class="button-delete"><a href="{{ url_for('Role.delete_confirm', role_id=role.id) }}">Delete</a></button>
     </div>
 </div>
+{% else %}
+<p class="text-role">No Role created. Please create role for user.</p>
 {% endfor %}
 {% endblock %}

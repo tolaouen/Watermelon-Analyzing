@@ -5,10 +5,10 @@
         <nav class="nav-bar">
             <div class="nav-link">
                 <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
                 </ul>
             </div>
         </nav>
@@ -25,7 +25,7 @@
         </div>
         <div class="card-content-button">
             <button class="button-content-delete" type="submit">Delete</button>
-            <button class="button-content-cancel"><a href="{{ url_for('modules.index') }}">Cancel</a></button>
+            <button class="button-content-cancel"><a href="{{ url_for('module.index') }}">Cancel</a></button>
         </div>
     </div>
 {% endblock %}

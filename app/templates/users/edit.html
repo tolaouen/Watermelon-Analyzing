@@ -5,10 +5,10 @@
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
@@ -53,22 +53,23 @@
         </div>
 
         <div class="create-form-input">
-            {{ form.password }}
-            {% if form.password.errors %}
+            {{ form.confirm_password }}
+            {% if form.confirm_password.errors %}
             <input type="password" in="confirm_password" placeholder="Confirm Password" required>
-            {% for error in form.password.errors %}
+            {% for error in form.confirm_password.errors %}
                  <div>{{ error }}</div>
             {% endfor %}
             {% endif %}
         </div>
         <div class="create-form-button">
-            <input type="submit" id="change" value="Change">
-        </div>
-        <div class="create_form-button">
-            <a href="{{ url_for('users.index') }}">
-                <input type="submit" id="cancel" value="Cancel">
-            </a>
+            <input type="submit" id="change" value="Update">
         </div>
     </form>
+</div>
+
+<div class="create_form-button">
+    <a href="{{ url_for('User.index') }}">
+        <input type="submit" id="cancel" value="Cancel">
+    </a>
 </div>
 {% endblock %}

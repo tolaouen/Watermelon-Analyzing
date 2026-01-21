@@ -16,11 +16,11 @@ def index():
 @user_router.route("/<int:user_id>")
 @login_required
 def detail(user_id: int):
-    users = UserService.get_user_by_id(user_id)
+    user = UserService.get_user_by_id(user_id)
 
-    if users is None:
+    if user is None:
         abort(404, "User Not Found")
-    return render_template("users/detail.html", users=users)
+    return render_template("users/detail.html", user=user)
 
 @user_router.route("/create", methods=["GET", "POST"])
 @login_required
@@ -37,9 +37,9 @@ def create():
         }
         password = form.password.data
         role_id = form.role_id.data or None
-        users = UserService.create_user(role_id, data, password)
+        users = UserService.create_user(data, password, role_id)
         flash(f"User '{users.username}' was created successfully.", "success")
-        return redirect(url_for("users.detail", user_id=users.id))
+        return redirect(url_for("User.detail", user_id=users.id))
     return render_template("users/create.html", form=form)
 
 @user_router.route("/<int:user_id>/edit", methods=["GET", "POST"])
@@ -62,7 +62,7 @@ def edit(user_id: int):
         role_id = form.role_id.data or None
         UserService.update_user(users, data, password, role_id)
         flash(f"User '{users.username}' was updated successfully.", "success")
-        return redirect(url_for("users.detail", user_id=users.id))
+        return redirect(url_for("User.detail", user_id=users.id))
     return render_template("users/edit.html", form=form, user=users)
 
 @user_router.route("/<int:user_id>/delete", methods=["GET"])
@@ -84,7 +84,7 @@ def delete(user_id: int):
 
     UserService.delete_user(user)
     flash("User was deleted successfully", "success")
-    return redirect(url_for("users.index"))
+    return redirect(url_for("User.index"))
 
 
 

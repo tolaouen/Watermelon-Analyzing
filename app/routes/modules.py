@@ -8,10 +8,10 @@ module_route = Blueprint("module", __name__, url_prefix="/module")
 @module_route.route("/")
 @login_required
 def index():
-    module = ModuleService.get_module_all()
-    return render_template("modules/index.html", module = module)
+    modules = ModuleService.get_module_all()
+    return render_template("modules/index.html", modules=modules)
 
-@module_route.route("/<int: module_id>")
+@module_route.route("/<int:module_id>")
 @login_required
 def detail(module_id: int):
     module = ModuleService.get_module_by_id(module_id)
@@ -29,18 +29,17 @@ def create():
     if form.validate_on_submit():
         data = {
             "name": form.name.data,
-            "description": form.name.data
+            "description": form.description.data
         }
-        permission_id = form.permission_id.data or []
-        module = ModuleService.create_module(data, permission_id)
+        module = ModuleService.create_module(data)
         flash(f"Module {module.name} was created successfully", "success")
-        return redirect(url_for('modules.create'))
+        return redirect(url_for('module.detail', module_id=module.id))
     return render_template("modules/create.html")
 
 @module_route.route("/<int:module_id>/edit", methods=["GET", "POST"])
 @login_required
 def edit(module_id: int):
-    module = ModuleService.update_module(module_id)
+    module = ModuleService.get_module_by_id(module_id)
 
     if module is None:
         abort(404, "Module Not Found")
@@ -52,11 +51,10 @@ def edit(module_id: int):
             "name": form.name.data,
             "description": form.description.data 
         }
-        permission_id = form.permission_id.data or []
-        ModuleService.update_module(data, permission_id, module)
-        flash(f"Module {module.name} was updated succesfullt", "success")
-        return redirect(url_for('modules.edit'))
-    return render_template("modules.edit.html", form=form)
+        ModuleService.update_module(data, module)
+        flash(f"Module {module.name} was updated successfully", "success")
+        return redirect(url_for('module.detail', module_id=module.id))
+    return render_template("modules/edit.html", form=form)
 
 @module_route.route("/<int:module_id>/delete", methods=["GET"])
 @login_required
@@ -69,7 +67,7 @@ def delete_confirm(module_id: int):
     form = DeleteModuleForm()
     return render_template("modules/delete.html", form=form, module=module)
 
-@module_route("/<int:module_id>/delete", methods=["POST"])
+@module_route.route("/<int:module_id>/delete", methods=["POST"])
 @login_required
 def delete(module_id: int):
     module = ModuleService.get_module_by_id(module_id)
@@ -78,6 +76,5 @@ def delete(module_id: int):
         abort(404, "Module Not Found")
 
     ModuleService.delete_module(module)
-    flash(f"Module {module.name} was deleted succesfully", "success")
-    return redirect(url_for('modules.index'))
-
+    flash(f"Module {module.name} was deleted successfully", "success")
+    return redirect(url_for('module.index'))

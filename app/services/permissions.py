@@ -18,6 +18,7 @@ class PermissionService:
     def create_permission(data: dict) -> Permission:
         new_permission = Permission(
             name = data["name"],
+            code = data["code"],
             description = data.get("description") or ""
         )
         db.session.add(new_permission)
@@ -25,8 +26,9 @@ class PermissionService:
         return new_permission
 
     @staticmethod
-    def update_permission(data: dict, permission: Permission) -> Permission:
+    def update_permission(permission: Permission, data: dict) -> Permission:
         permission.name = data["name"]
+        permission.code = data["code"]
         permission.description = data.get("description") or ""
 
         db.session.commit()

@@ -1,13 +1,15 @@
 
+{% extends "layout/base.html" %}
+
 {% block content %}
 <div>
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
@@ -19,13 +21,13 @@
     </div>
     <div class="list-view-button">
         <button class="button-edit">
-            <a href="{{ url_for('permissions.edit', permission_id=permission.id) }}">Edit</a>
+            <a href="{{ url_for('Permission.edit', permission_id=permission.id) }}">Edit</a>
         </button>
-        <button type="submit" class="button-delete-confirm">
-            Delete
+        <button class="button-delete-confirm">
+            <a href="{{ url_for('Permission.delete_confirm', permission_id=permission.id) }}">Delete</a>
         </button>
         <button class="button-cancel">
-            <a href="{{ url_for('permissions.index') }}">⏎ Back</a>
+            <a href="{{ url_for('Permission.index') }}">⏎ Back</a>
         </button>
     </div>
 </div>
@@ -35,8 +37,9 @@
         <ul>
             <li><strong>Code: </strong>{{ permission.code }}</li>
             <li><strong>Name: </strong>{{ permission.name}}</li>
-            <li><strong>Module: </strong>{{ permission.modules.name }}</li>
+            <li><strong>Modules: </strong>{{ permission.modules|join(', ', attribute='name') if permission.modules else 'None' }}</li>
             <li><strong>Description: </strong>{{ permission.description }}</li>
         </ul>
     </div>
 </div>
+{% endblock %}

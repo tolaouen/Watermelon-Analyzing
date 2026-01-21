@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/app/static/css/style.css ">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Register</title>
 </head>
 <body>
+    
+{% block content %}
 <div class="card-login-container">
     <div class="card-login">
         <div>
@@ -14,18 +16,16 @@
         </div>
         <div>
             <form action="{{ url_for('auth.register') }}" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-login-flex">
                     <div class="form-login">
-                        <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
+                        <input type="text" id="full_name" name="full_name" placeholder="Full Name" required>
                     </div>
                     <div class="form-login">
                         <input type="text" id="username" name="username" placeholder="Username" required>
                     </div>
                     <div class="form-login">
                         <input type="email" id="email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-login">
-                        <input type="text" id="full-name" name="full-name" placeholder="Full Name" required>
                     </div>
 
                     <div class="form-login-pwd">
@@ -47,5 +47,6 @@
         </div>
     </div>
 </div>
+{% endblock %}
 </body>
 </html>

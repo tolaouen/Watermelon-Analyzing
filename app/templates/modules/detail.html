@@ -4,10 +4,10 @@
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
@@ -19,13 +19,13 @@
     </div>
     <div class="list-view-button">
         <button class="button-edit">
-            <a href="{{ url_for('modules.edit', module_id=module.id) }}">Edit</a>
+            <a href="{{ url_for('module.edit', module_id=module.id) }}">Edit</a>
         </button>
         <button type="submit" class="button-delete-confirm">
             Delete
         </button>
         <button class="button-cancel">
-            <a href="{{ url_for('modules.index') }}">⏎ Back</a>
+            <a href="{{ url_for('module.index') }}">⏎ Back</a>
         </button>
     </div>
 </div>

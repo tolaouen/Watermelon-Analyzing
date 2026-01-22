@@ -35,8 +35,8 @@
 <div class="card-detail-all">
     <div class="card-detail">
         <ul>
-            <li><strong>Code: </strong>{{ permission.code }}</li>
             <li><strong>Name: </strong>{{ permission.name}}</li>
+            <li><strong>Code: </strong>{{ permission.code }}</li>
             <li><strong>Modules: </strong>{{ permission.modules|join(', ', attribute='name') if permission.modules else 'None' }}</li>
             <li><strong>Description: </strong>{{ permission.description }}</li>
         </ul>

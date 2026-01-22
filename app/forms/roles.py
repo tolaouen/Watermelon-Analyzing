@@ -1,7 +1,7 @@
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectMultipleField, SubmitField
-from wtforms.validators import DataRequired, Length, ValidationError
+from wtforms import StringField, TextAreaField, SubmitField, SelectField
+from wtforms.validators import DataRequired, Length, ValidationError, Optional
 from extensions import db
 from app.models.roles import Role
 from app.models.permissions import Permission
@@ -13,19 +13,19 @@ class CreateRoleForm(FlaskForm):
         render_kw={"placeholder": "Role Name"},
     )
 
-    description = TextAreaField(
+    description = StringField(
         "Description",
-        validators=[Length(max=200)],
         render_kw={"placeholder": "Description"},
     )
 
-    permissions = SelectMultipleField(
+    permissions = SelectField(
         "Permissions",
         coerce=int,
-        render_kw={"size": 10},
+        validators=[Optional()],
+        render_kw={"placeholder": "Permissions"},
     )
 
-    submit = SubmitField("Create Role")
+    submit = SubmitField("Save")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -43,19 +43,14 @@ class UpdateRoleForm(FlaskForm):
         render_kw={"placeholder": "Role Name"},
     )
 
-    description = TextAreaField(
-        "Description",
-        validators=[Length(max=200)],
-        render_kw={"placeholder": "Description"}
-    )
+    description = StringField("Description")
 
-    permissions = SelectMultipleField(
+    permissions = SelectField(
         "Permissions",
         coerce=int,
-        render_kw={"size": 10},
     )
 
-    submit = SubmitField("Update Role")
+    submit = SubmitField("Update")
 
     def __init__(self, original_role, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -64,7 +59,8 @@ class UpdateRoleForm(FlaskForm):
         # Set initial form data
         self.name.data = original_role.name
         self.description.data = original_role.description
-        self.permissions.data = [p.id for p in original_role.permissions]
+        if original_role.permissions:
+            self.permissions.data = original_role.permissions[0].id
 
     def validate_name(self, name):
         if name.data != self.original_role.name:

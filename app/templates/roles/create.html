@@ -17,7 +17,7 @@
 <div class="create-form">
     <form  method="post" novalidate>
         {{ form.csrf_token() }}
-        
+    <div class="create-form-edit">
         <div class="create-form-input">
             {{ form.name }}
             {% if form.name.errors %}
@@ -44,13 +44,14 @@
                 {% endfor %}
             {% endif %}
         </div>
-
         <div class="create-form-button">
             {{ form.submit(id="save", value="Save") }}
-            <a href="{{ url_for('Role.index') }}">
-                <button type="button" id="cancel">Cancel</button>
-            </a>
         </div>
+
+        <div class="create-form-edit">
+            <button type="submit" id="cancel"><a href="{{ url_for('Role.index') }}">Cancel</a></button>
+        </div>
+    </div>
     </form>
 </div>
 

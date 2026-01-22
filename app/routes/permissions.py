@@ -31,7 +31,8 @@ def create():
             "code": form.code.data,
             "description": form.description.data
         }
-        permission = PermissionService.create_permission(data)
+        module_id = form.module.data
+        permission = PermissionService.create_permission(data, module_id)
         flash(f"Permission {permission.name} created successfully", "success")
         return redirect(url_for("Permission.index"))
     return render_template("permissions/create.html", form=form)
@@ -50,7 +51,8 @@ def edit(permission_id: int):
             "code": form.code.data,
             "description": form.description.data
         }
-        PermissionService.update_permission(permission, data)
+        module_id = form.module.data
+        PermissionService.update_permission(permission, data, module_id)
         flash(f"Permission {permission.name} updated successfully", "success")
         return redirect(url_for("Permission.detail", permission_id=permission.id))
     return render_template("permissions/edit.html", form=form, permission=permission)

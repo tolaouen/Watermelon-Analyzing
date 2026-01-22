@@ -8,16 +8,18 @@
 </head>
 <body>
     <div>
-        <button><a href="{{ url_for('dashboard.result') }}">⏎ Back</a></button>
-        <div>
-            <ul>
-                <li>Disease: {{ diseases.name }}</li>
-                <li>Symptoms: {{ disease.symptoms }}</li>
-                <li>Causes: {{ disease.causes }}</li>
-                <li>Treatments: {{ disease.treatments }}</li>
-                <li>Prevention: {{ disease.prevention }}</li>
-                <li>created At: {{ disease.created_at }}</li>
-            </ul>
+        <button class="button-cancel"><a href="{{ url_for('disease.index') }}">⏎ Back</a></button>
+        <div class="card-detail-all">
+            <div class="card-detail">
+                <ul>
+                    <li>Disease: {{ disease.name }}</li>
+                    <li>Symptoms: {{ disease.symptoms }}</li>
+                    <li>Causes: {{ disease.causes }}</li>
+                    <li>Treatments: {{ disease.treatments }}</li>
+                    <li>Prevention: {{ disease.prevention }}</li>
+                    <li>created At: {{ disease.created_at }}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>

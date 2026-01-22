@@ -1,4 +1,4 @@
-{% extends "layout/base.html" }
+{% extends "layout/base.html" %}
 
 {% block content %}
     <div>
@@ -13,19 +13,22 @@
             </div>
         </nav>
     </div>
-
+<div class="card-style">
     <div class="card-content">
         <div class="card-content-head">
             <ul>
-                <li>Are you sure you want to delete this module permission?</li>
-                <li><strong>Code: </strong>{{ permission.code }}</li>
+                <li>Are you sure you want to delete this module?</li>
                 <li><strong>Name: </strong>{{ module.name }}</li>
                 <li><strong>Description: </strong>{{ module.description or "-"}}</li>
             </ul>
         </div>
-        <div class="card-content-button">
-            <button class="button-content-delete" type="submit">Delete</button>
-            <button class="button-content-cancel"><a href="{{ url_for('module.index') }}">Cancel</a></button>
-        </div>
     </div>
+    <div class="card-content-button">
+        <button class="button-content-cancel"><a href="{{ url_for('module.index') }}">Cancel</a></button>
+        <form method="POST" action="{{ url_for('module.delete', module_id=module.id) }}">
+            {{ form.hidden_tag() }}
+            {{ form.submit(class="button-content-delete") }}
+        </form>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('disease.index')}}">Analyst</a></li>
+                <li><a href="{{ url_for('disease.create') }}">Insert Diagnose</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="create-form">
+    <form method="POST" novalidate>
+        {{ form.csrf_token() }}
+        <div class="create-form-input">
+            {{ form.name }}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.symptoms }}
+            {% if form.symptoms.errors %}
+                {% for error in form.symptoms.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.causes }}
+            {% if form.causes.errors %}
+                {% for error in form.causes.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.treatments }}
+            {% if form.treatments.errors %}
+                {% for error in form.treatments.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-input">
+            {{ form.prevention }}
+            {% if form.prevention.errors %}
+                {% for error in form.prevention.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="create-form-button">
+            {{ form.submit(id="save", value="Save") }}
+            <a href="{{ url_for('disease.index') }}">
+                <button type="button" id="cancel">Cancel</button>
+            </a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

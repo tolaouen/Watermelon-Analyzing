@@ -45,6 +45,9 @@ class UpdateModuleForm(FlaskForm):
     def __init__(self, original_module, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.original_module = original_module
+        # Set initial form data
+        self.name.data = original_module.name
+        self.description.data = original_module.description
 
     def validate_name(self, name):
         if name.data != self.original_module.name:
@@ -55,4 +58,3 @@ class UpdateModuleForm(FlaskForm):
             
 class DeleteModuleForm(FlaskForm):
     submit = SubmitField("Delete")
-    

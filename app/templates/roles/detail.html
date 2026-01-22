@@ -15,11 +15,6 @@
 </div>
 
     <div class="list-button">
-        <div class="list-view-role">
-            <p>Role: {{ role.name }}</p>
-            <p>Create at: {{ role.created_at.strftime('%Y-%m-%d') }}</p>
-            <p>Update at: {{ role.updated_at.strftime('%Y-%m-%d') }}</p>
-        </div>
         <div class="list-view-button">
             <button class="button-edit">
                 <a href="{{ url_for('Role.edit', role_id=role.id) }}">Edit</a>
@@ -38,8 +33,10 @@
         <div class="card-view-1">
             <h2>Role Info</h2>
             <div>
-                <p>Name: {{ role.name }}</p>
-                <p>Description: {{ role.description}} </p>
+                <p><strong>Name:</strong> {{ role.name }}</p>
+                <p><strong>Description:</strong> {{ role.description}} </p>
+                <p><strong>Role:</strong> {{ role.name }}</p>
+                <p><strong>Create at:</strong> {{ role.created_at.strftime('%Y-%m-%d') }}</p>
             </div>
         </div>
 

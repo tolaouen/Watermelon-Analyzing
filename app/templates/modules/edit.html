@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends "layout/base.html" %}
 
 {% block content %}
 <div>
@@ -14,34 +14,31 @@
     </nav>
 </div>
 
-<div>
-    <form class="create-form" method="post" novalidate>
+<div class="create-form">
+    <form method="post" novalidate>
+        {{ form.csrf_token() }}
         <div class="create-form-input">
             {{ form.name }}
-            {% if form.code.errors %}
-            <input type="text" id="name" placeholder="Name" required>
-            {% for error in form.name.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
             {% endif %}
         </div>
 
         <div class="create-form-input">
             {{ form.description }}
             {% if form.description.errors %}
-            <input type="text" id="description" placeholder="Description" required>
-            {% for error in form.description.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
+                {% for error in form.description.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
             {% endif %}
         </div>
 
         <div class="create-form-button">
-            <input type="submit" id="change" value="Change">
-        </div>
-        <div class="create-form-button">
+            {{ form.submit(id="change", value="Update") }}
             <a href="{{ url_for('module.index') }}">
-                <input type="submit" id="cancel" value="Cancel">
+                <button type="button" id="cancel">Cancel</button>
             </a>
         </div>
     </form>

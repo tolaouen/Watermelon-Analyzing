@@ -75,5 +75,16 @@ class DiseaseService:
     @staticmethod
     def get_disease_by_id(disease_id: int) -> Optional[Disease]:
         return Disease.query.get(disease_id)
-    
-    
+
+    @staticmethod
+    def create_disease(data: dict) -> Disease:
+        disease = Disease(
+            name=data["name"],
+            symptoms=json.dumps(data["symptoms"].split(',')),
+            causes=data["causes"],
+            treatments=data["treatments"],
+            prevention=data["prevention"]
+        )
+        db.session.add(disease)
+        db.session.commit()
+        return disease

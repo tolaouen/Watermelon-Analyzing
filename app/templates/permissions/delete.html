@@ -14,6 +14,7 @@
         </nav>
     </div>
 
+    <div class="card-style">
     <div class="card-content">
         <div class="card-content-head">
             <ul>
@@ -22,12 +23,14 @@
                 <li><strong>code: </strong>{{ permission.code }}</li>
             </ul>
         </div>
-        <div class="card-content-button">
-            <form method="POST" action="{{ url_for('Permission.delete', permission_id=permission.id) }}">
-                {{ form.hidden_tag() }}
-                {{ form.submit(class="button-content-delete") }}
-            </form>
-            <button class="button-content-cancel"><a href="{{ url_for('Permission.index') }}">Cancel</a></button>
-        </div>
+    </div>
+
+    <div class="card-content-button">
+        <button class="button-content-cancel"><a href="{{ url_for('Permission.index') }}">Cancel</a></button>
+        <form method="POST" action="{{ url_for('Permission.delete', permission_id=permission.id) }}">
+            {{ form.hidden_tag() }}
+            {{ form.submit(class="button-content-delete") }}
+        </form>
+</div>
     </div>
 {% endblock %}

@@ -34,7 +34,7 @@ def create():
         module = ModuleService.create_module(data)
         flash(f"Module {module.name} was created successfully", "success")
         return redirect(url_for('module.detail', module_id=module.id))
-    return render_template("modules/create.html")
+    return render_template("modules/create.html", form=form)
 
 @module_route.route("/<int:module_id>/edit", methods=["GET", "POST"])
 @login_required

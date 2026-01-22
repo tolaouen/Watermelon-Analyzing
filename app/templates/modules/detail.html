@@ -1,4 +1,6 @@
 
+{% extends "layout/base.html" %}
+
 {% block content %}
 <div>
     <nav class="nav-bar">
@@ -21,8 +23,8 @@
         <button class="button-edit">
             <a href="{{ url_for('module.edit', module_id=module.id) }}">Edit</a>
         </button>
-        <button type="submit" class="button-delete-confirm">
-            Delete
+        <button class="button-delete-confirm">
+            <a href="{{ url_for('module.delete_confirm', module_id=module.id) }}">Delete</a>
         </button>
         <button class="button-cancel">
             <a href="{{ url_for('module.index') }}">⏎ Back</a>
@@ -40,3 +42,4 @@
         </ul>
     </div>
 </div>
+{% endblock %}

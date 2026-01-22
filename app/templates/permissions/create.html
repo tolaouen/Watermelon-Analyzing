@@ -17,10 +17,10 @@
 <div class="create-form">
     <form method="post" novalidate>
         {{ form.csrf_token() }}
+    <div class="create-form-edit">
         <div class="create-form-input">
             {{ form.code }}
             {% if form.code.errors %}
-            <input type="text" id="code" placeholder="code" required>
             {% for error in form.code.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
@@ -30,21 +30,38 @@
         <div class="create-form-input">
             {{ form.name }}
             {% if form.name.errors %}
-            <input type="text" id="name" placeholder="Name" required>
             {% for error in form.name.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
             {% endif %}
         </div>
 
+        <div class="create-form-input">
+            {{ form.module }}
+            {% if form.module.errors %}
+            {% for error in form.module.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
 
+        <div class="create-form-input">
+            {{ form.description }}
+            {% if form.description.errors %}
+            {% for error in form.description.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+        </div>
 
         <div class="create-form-button">
             {{ form.submit(id="save", value="Save") }}
-            <a href="{{ url_for('Permission.index') }}">
-                <button type="button" id="cancel">Cancel</button>
-            </a>
         </div>
+
+        <div class="create-form-button">
+            <button type="button" id="cancel"><a href="{{ url_for('Permission.index') }}">Cancel</a></button>
+        </div>
+    </div>
     </form>
 </div>
 {% endblock %}

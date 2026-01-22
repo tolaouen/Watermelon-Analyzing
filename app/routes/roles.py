@@ -31,7 +31,7 @@ def create():
             "name": form.name.data,
             "description": form.description.data
         }
-        permission_id = form.permissions.data or []
+        permission_id = [form.permissions.data] if form.permissions.data else []
         role = RolesService.create_role(data, permission_id)
         flash(f"Role {role.name} created successfully", "success")
         return redirect(url_for("Role.index"))
@@ -52,7 +52,7 @@ def edit(role_id: int):
             "name": form.name.data,
             "description": form.description.data
         }
-        permission_id = form.permissions.data or []
+        permission_id = [form.permissions.data] if form.permissions.data else []
         RolesService.update_role(roles, data, permission_id)
         flash(f"Role {roles.name} updated successfully", "success")
         return redirect(url_for("Role.detail", role_id=roles.id))
@@ -76,9 +76,3 @@ def delete(role_id: int):
     RolesService.delete_role(roles)
     flash(f"Role {roles.name} deleted successfully", "success")
     return redirect(url_for("Role.index"))
-        
-
-
-
-
-

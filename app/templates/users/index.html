@@ -45,6 +45,8 @@
         <button class="button-delete"><a href="{{ url_for('User.delete_confirm', user_id=user.id) }}">Delete</a></button>
     </div>  
 </div>
+{% else %}
+<p class="text-role">No User created. Please create user for role.</p>
 {% endfor %}
 
 {% endblock %}

@@ -9,7 +9,7 @@ class CreateDiseaseForm(FlaskForm):
     name = StringField(
         "Disease Name",
         validators=[DataRequired(), Length(min=3, max=100)],
-        render_kw={"placeholder": "Enter disease name"},
+        render_kw={"placeholder": "Disease name"},
     )
 
     symptoms = TextAreaField(
@@ -86,3 +86,14 @@ class UpdateDiseaseForm(FlaskForm):
 # Delete Disease form
 class DeleteDiseaseForm(FlaskForm):
     submit = SubmitField("Delete")
+
+# Diagnosis form
+class DiagnosisForm(FlaskForm):
+    symptoms = StringField(
+        "Symptoms",
+        validators=[DataRequired()],
+        render_kw={"placeholder": "Search symptoms..."},
+    )
+
+    submit = SubmitField("Diagnose")
+ 

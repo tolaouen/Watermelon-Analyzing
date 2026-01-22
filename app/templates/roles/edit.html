@@ -17,39 +17,42 @@
 <div class="create-form">
     <form method="post" novalidate>
         {{ form.csrf_token() }}
+        <div class="create-form-edit">
+            <div class="create-form-input">
+                {{ form.name }}
+                {% if form.name.errors %}
+                    {% for error in form.name.errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="create-form-input">
-            {{ form.name }}
-            {% if form.name.errors %}
-                {% for error in form.name.errors %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
+            <div class="create-form-input">
+                {{ form.description }}
+                {% if form.description.errors %}
+                    {% for error in form.description.errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="create-form-input">
-            {{ form.description }}
-            {% if form.description.errors %}
-                {% for error in form.description.errors %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
+            <div class="create-form-input-check">
+                {{ form.permissions }}
+                {% if form.permissions.errors %}
+                    {% for error in form.permissions.errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="create-form-input-check">
-            {{ form.permissions }}
-            {% if form.permissions.errors %}
-                {% for error in form.permissions.errors %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
-
-        <div class="create-form-button">
-            {{ form.submit(id="change", value="Update") }}
-            <a href="{{ url_for('Role.index') }}">
-                <button type="button" id="cancel">Cancel</button>
-            </a>
+            <div class="create-form-button">
+                {{ form.submit(id="change", value="Update") }}
+            </div>
+            <div class="button-cancel-edit">
+                <button>
+                    <a href="{{ url_for('Role.index') }}">Cancel</a>
+                </button>
+            </div>
         </div>
     </form>
 </div>

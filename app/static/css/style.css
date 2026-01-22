@@ -144,6 +144,22 @@
     width: 100px;
     height: 30px;
 }
+.button-submit-permsission button {
+    background-color: rgb(74, 230, 84);
+    border:none;
+    color: white;
+    border-radius: 5px;
+    width: 130px;
+    height: 30px;
+}
+.button-submit-permsission button a{
+    background-color: rgb(74, 230, 84);
+    color: white;
+    text-decoration: none;
+}
+.button-submit-permsission button:hover {
+    box-shadow: 1px 1px 9px 1px rgb(74, 230, 84);
+}
 .li-user {
     position: relative;
     left: 50px;
@@ -236,6 +252,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.create-form-edit  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+.create-form-input {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 .create-form-input input {
@@ -244,7 +271,7 @@
     padding-left: 10px;
     border-radius: 5px;
 }
-.create-form-input-check{
+.create-form-input-check {
     width: 300px;
     height: 25px;
     padding-left: 10px;
@@ -270,19 +297,16 @@
 .card-content {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    gap: 100px;
     border-radius: 10px;
     box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
     width: 600px;
-    height: 300px;
-    margin-left: 50px;
+    height: 200px;
 }
 .card-content-head ul {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 .card-content-head li {
     list-style: none;
@@ -430,13 +454,27 @@
     box-shadow: 1px 1px 9px 1px blueviolet;
 }
 
+.create-form-edit button{
+    width: 200px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+}
+.create-form-edit a {
+    text-decoration: none;
+    color: white;
+    background-color: #555;
+}
+
 /* roles/detail.html */
 .list-button {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    gap: 20px
+    gap: 20px;
+    width: 1140px;
 }
 
 .list-view-role {
@@ -453,8 +491,9 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     border-radius: 10px;
+    width: 1200px;
 }
 
 .card-view-1 {
@@ -465,7 +504,7 @@
     border-radius: 10px;
     padding: 10px;
     width: 400px;
-    height: 150px;
+    height: 200px;
 }
 .card-view-2 {
     display: flex;
@@ -496,10 +535,15 @@
 .ul-list ul {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 50px;
 }
 .ul-list li {
     list-style: none;
+}
+.ul-list ul, li {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
 .li-list {
     display: flex;
@@ -508,9 +552,15 @@
 }
 
 /* Permssions/detail.html */
+.card-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
 .card-detail-all {
-    width: 1200px;
+    width: 500px;
     padding: 30px;
     border: 1px solid black;
     border-radius: 10px;

@@ -13,7 +13,7 @@
         </div>
     </nav>
 </div>
-<div class="button-submit">
+<div class="button-submit-permsission">
     <button type="submit">
         <a href="{{ url_for('Permission.create') }}">Add Permission</a>
     </button>
@@ -40,10 +40,10 @@
             <a href="{{ url_for('Permission.delete_confirm', permission_id=perm.id) }}">Delete</a>
         </button>
     </div>
-    {% else %}
-    <p class="text-role">No Permission created. Please create permission for user.</p>
     {% endif %}
 </div>
+{% else %}
+<p class="text-role">No Permission created. Please create permission for user.</p>
 {% endfor %}
 
 {% endblock %}

@@ -5,37 +5,39 @@
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
 </div>
 <div class="button-submit">
     <button type="submit">
-        <a href="{{ url_for('modules.create', module_id=module.id) }}">Add Module</a>
+        <a href="{{ url_for('module.create') }}">Add Module</a>
     </button>
 </div>
 {% for module in modules %}
 <div class="row-user">
     <div class="image-view">
-        <img src="/app/static/images/profile.jpeg" alt="images">
+        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="images">
     </div>
     <div class="list-user">
         <ul>
-            <li>>{{ module.name }}</li>
+            <li><a href="{{ url_for('module.detail', module_id=module.id) }}">{{ module.name }}</a></li>
             <li>{{ module.description }}</li>
             <li>{{ module.permissions | length }}</li>
             <li>{{ module.created_at.strftime('%Y-%m-%d')}}</li>
         </ul>
     </div>
     <div class="button-list">
-        <button class="button-update"><a href="{{ url_for('users.edit', user_id=user.id) }}">Edit</a></button>
-        <button class="button-delete"><a href="{{ url_for('users.delete', user_id=user.id) }}">Delete</a></button>
+        <button class="button-update"><a href="{{ url_for('module.edit', module_id=module.id) }}">Edit</a></button>
+        <button class="button-delete"><a href="{{ url_for('module.delete_confirm', module_id=module.id) }}">Delete</a></button>
     </div>
 </div>
+{% else %}
+<p class="text-role">No Module created. Please create module for user.</p>
 {% endfor %}
 
 {% endblock %}

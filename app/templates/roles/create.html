@@ -5,57 +5,53 @@
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
 </div>
 
-<div>
-    <form class="create-form" method="post" novalidate>
-        {{ form.name }}
+<div class="create-form">
+    <form  method="post" novalidate>
+        {{ form.csrf_token() }}
+    <div class="create-form-edit">
         <div class="create-form-input">
+            {{ form.name }}
             {% if form.name.errors %}
-            <input type="text" id="username" placeholder="Username" required>
-            {% for error in form.name.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
+                {% for error in form.name.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
             {% endif %}
         </div>
 
-        {{ form.description }}
         <div class="create-form-input">
+            {{ form.description }}
             {% if form.description.errors %}
-            <input type="email" id="email" placeholder="Email" required>
-            {% for error in form.description.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
+                {% for error in form.description.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
             {% endif %}
         </div>
 
-        {% for perm in perms %}
-        <div>
-            <input 
-                type="checkbox" id="perm_{{ perm.id }}" 
-                name="{{ form.permission_id.name }}" 
-                value="{{ perm.id }}"
-                {% if form.permission_id.data and perm.id in form.permission_id.data %}checked{% endif %}
-            >
-            <label for="perm_{{ perm.id }}">
-                <strong>{{ perm.code }}</strong> {{ perm.name }}
-            </label>
+        <div class="create-form-input-check">
+            {{ form.permissions }}
+            {% if form.permissions.errors %}
+                {% for error in form.permissions.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
         </div>
-        {% endfor %}
-
         <div class="create-form-button">
-            <input type="submit" id="save" value="Save">
-            <a href="{{ url_for(' roles.index ')}}">
-                <input type="submit" id="cancel" value="Cancel">
-            </a>
+            {{ form.submit(id="save", value="Save") }}
         </div>
+
+        <div class="create-form-edit">
+            <button type="submit" id="cancel"><a href="{{ url_for('Role.index') }}">Cancel</a></button>
+        </div>
+    </div>
     </form>
 </div>
 

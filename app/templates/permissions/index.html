@@ -1,45 +1,49 @@
-{% extend "layout/base.html" %}
+{% extends "layout/base.html" %}
 
 {% block content %}
 <div>
     <nav class="nav-bar">
         <div class="nav-link">
             <ul>
-                <li><a href="{{ url_for('users.index') }}">User</a></li>
-                <li><a href="{{ url_for('roles.index') }}">Role</a></li>
-                <li><a href="{{ url_for('permissions.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('modules.index') }}">Module</a></li>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
         </div>
     </nav>
 </div>
-<div class="button-submit">
+<div class="button-submit-permsission">
     <button type="submit">
-        <a href="{{ url_for('roles.create', role_id=role.id) }}">Add Role</a>
+        <a href="{{ url_for('Permission.create') }}">Add Permission</a>
     </button>
 </div>
 
 {% for perm in permissions %} 
 <div class="row-user">
+    {% if perm %}
     <div class="image-view">
-        <img src="/app/static/images/profile.jpeg" alt="images">
+        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="images">
     </div>
     <div class="list-user">
         <ul>
-            <li><a href="{{ url_for('permission.detail', permission_id=permission.id) }}">{{ perm.code }}</a></li>
+            <li><a href="{{ url_for('Permission.detail', permission_id=perm.id) }}">{{ perm.code }}</a></li>
             <li>{{ perm.name }}</li>
-            <li>{{ perm.modules }}</li>
+            <li>{{ perm.modules|join(', ', attribute='name') if perm.modules else 'None' }}</li>
             <li>{{ perm.roles|length }} role{{ 's' if perm.roles|length != 1 else '' }}</li>
             <li>{{ perm.created_at.strftime('%Y-%m-%d') }}</li>
         </ul>
     </div>
     <div class="button-list">
-        <button class="button-update"><a href="{{ url_for(permissions.edit', permission_id=permission.id) }}">Edit</a></button>
+        <button class="button-update"><a href="{{ url_for('Permission.edit', permission_id=perm.id) }}">Edit</a></button>
         <button class="button-delete">
-            <a href="{{ url_for('permissions.delete', permission_id=permission.id) }}">Delete</a>
+            <a href="{{ url_for('Permission.delete_confirm', permission_id=perm.id) }}">Delete</a>
         </button>
     </div>
+    {% endif %}
 </div>
+{% else %}
+<p class="text-role">No Permission created. Please create permission for user.</p>
 {% endfor %}
 
 {% endblock %}

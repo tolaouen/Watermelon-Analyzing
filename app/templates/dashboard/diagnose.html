@@ -1,18 +1,35 @@
 
-<body>
-{% extends 'layout/base.html' %}
+{% extends "layout/base.html" %}
+
 {% block content %}
-<h2>Diagnose Watermelon Disease</h2>
 <div>
-        <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.symptoms.label }}
-        <select multiple name="symptoms">
-            {% for choice in form.symptoms.choices %}
-                <option value="{{ choice[0] }}">{{ choice[1] }}</option>
-            {% endfor %}
-        </select>
-        {{ form.submit }}
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="create-form">
+    <h2>Diagnose Watermelon Disease</h2>
+    <form method="POST">
+        {{ form.csrf_token() }}
+        <div class="create-form-input">
+            {{ form.symptoms }}
+            {% if form.symptoms.errors %}
+                {% for error in form.symptoms.errors %}
+                    <div>{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="create-form-button">
+            <button type="submit">Search</button>
+        </div>
     </form>
 </div>
 {% endblock %}

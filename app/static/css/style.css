@@ -10,15 +10,15 @@
 .asidenav {
     display: flex;
     flex-direction: column;
-    height: 700px;
+    height: 650px;
     width: 150px;
     position: fixed;
-    top: 0;
+    top: 10px;
     right: 5px;
     border: 1px solid black;
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 5px 0 2px rgba(0,0,0,0.1);
+
 }
 .profile-status {
     display: flex;
@@ -91,7 +91,6 @@
 
 .button-logout button{
     background-color: #ff4d4d;
-    color: white;
     width: 70px;
     height: 30px;
     border: none;
@@ -99,9 +98,15 @@
     cursor: pointer;
 }
 
+.button-logout button a{
+    background-color: #ff4d4d;
+    color: white;
+    text-decoration: none;
+}
+
 .container {
     margin-right: 100px;
-    margin-left: 40px;
+    margin-left: 20px;
     padding: 20px;
 }
 
@@ -115,6 +120,8 @@
     flex-direction: row;
     gap: 20px;
     justify-content: flex-start;
+    position: fixed;
+    top: 10px;
 }
 
 .nav-link li {
@@ -130,19 +137,54 @@
     margin-left: 30px;
 }
 .button-submit button {
-    background-color: rgb(56, 71, 165);
+    background-color: rgb(74, 230, 84);
     color: white;
     border-radius: 5px;
+    border: none;
+    width: 100px;
+    height: 30px;
+}
+.button-submit-permsission button {
+    background-color: rgb(74, 230, 84);
+    border:none;
+    color: white;
+    border-radius: 5px;
+    width: 130px;
+    height: 30px;
+}
+.button-submit-permsission button a{
+    background-color: rgb(74, 230, 84);
+    color: white;
+    text-decoration: none;
+}
+.button-submit-permsission button:hover {
+    box-shadow: 1px 1px 9px 1px rgb(74, 230, 84);
+}
+.li-user {
+    position: relative;
+    left: 50px;
+}
+
+.li-user-active {
+    position: relative;
+    left: 50px;
+}
+.button-submit a {
+
+    background-color: rgb(74, 230, 84);
+    color: white;
+    text-decoration: none;
+}
+.button-submit button:hover {
+    box-shadow: 1px 1px 9px 1px rgb(74, 230, 84);
 }
 .row-user {
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: relative;
-    left: 100px;
-    margin-top: 40px;
+    margin-top: 20px;
     border-bottom: 1px dotted black;
-    width: 700px;
+    width: 1060px;
 }
 .image-view {
     position: relative;
@@ -158,15 +200,19 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
 }
 .list-user li {
     list-style: none;
     font-size: 18px;
+    width: 130px;
 }
 .list-user a {
     color: blue;
 }
+.set-width {
+    width: 100px;
+} 
 .button-list {
     display: flex;
     flex-direction:  row;
@@ -175,15 +221,30 @@
     margin-left: 30px;
 }
 .button-update {
-    background-color: yellow;
+    background-color: rgb(226, 150, 44);
     border-radius: 5px;
     border: none;
+    width: 50px;
+    height: 20px;
+}
+.button-update a {
+    background-color: rgb(226, 150, 44);
+    color: white;
+    text-decoration: none;
 }
 
 .button-delete {
     background-color: red;
     border-radius: 5px;
     border: none;
+    width: 50px;
+    height: 20px;
+}
+
+.button-delete a {
+    background-color: red;
+    color: white;
+    text-decoration: none;
 }
 /* users/create */
 .create-form {
@@ -191,6 +252,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.create-form-edit  {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+.create-form-input {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 .create-form-input input {
@@ -198,6 +270,13 @@
     height: 25px;
     padding-left: 10px;
     border-radius: 5px;
+}
+.create-form-input-check {
+    width: 300px;
+    height: 25px;
+    padding-left: 10px;
+    border-radius: 5px;
+    gap: 10px;
 }
 .create-form-button input{
     width: 315px;
@@ -207,25 +286,38 @@
     border-radius: 5px;
     color: white;
 }
+.text-role {
+    color: gray;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
 /* users/delete.html */
 .card-content {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
-    gap: 100px;
     border-radius: 10px;
     box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
     width: 600px;
-    margin-left: 50px;
+    height: 200px;
 }
 .card-content-head ul {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 .card-content-head li {
     list-style: none;
+    font-size: 20px;
+}
+.card-content-button {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    margin-top: 40px;
 }
 .button-content-delete {
     border-radius: 5px;
@@ -334,6 +426,11 @@
     color: white;
     font-weight: bold;
 }
+.button-delete-confirm a {
+    color: white;
+    text-decoration: none;
+    background-color: red;
+}
 
 .button-delete-confirm:hover {
     box-shadow: 1px 1px 9px 1px red;
@@ -357,13 +454,27 @@
     box-shadow: 1px 1px 9px 1px blueviolet;
 }
 
+.create-form-edit button{
+    width: 200px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+}
+.create-form-edit a {
+    text-decoration: none;
+    color: white;
+    background-color: #555;
+}
+
 /* roles/detail.html */
 .list-button {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    gap: 20px
+    gap: 20px;
+    width: 1140px;
 }
 
 .list-view-role {
@@ -380,8 +491,9 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
     border-radius: 10px;
+    width: 1200px;
 }
 
 .card-view-1 {
@@ -392,7 +504,7 @@
     border-radius: 10px;
     padding: 10px;
     width: 400px;
-    height: 150px;
+    height: 200px;
 }
 .card-view-2 {
     display: flex;
@@ -417,15 +529,21 @@
     box-shadow: 1px 1px 9px 1px rgb(162, 170, 54);
     border-radius: 10px;
     padding: 20px;
-    width: 1350px;
+    width: 1100px;
+    margin-top: 30px;
 }
 .ul-list ul {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 50px;
 }
 .ul-list li {
     list-style: none;
+}
+.ul-list ul, li {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
 }
 .li-list {
     display: flex;
@@ -434,9 +552,15 @@
 }
 
 /* Permssions/detail.html */
+.card-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
 .card-detail-all {
-    width: 1200px;
+    width: 500px;
     padding: 30px;
     border: 1px solid black;
     border-radius: 10px;
@@ -585,6 +709,15 @@
     color: gray;
     font-weight: bold;
     text-align: center;
+}
+
+.create_form-button input{
+    background-color: rgb(110, 89, 89);
+    color: white;
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
 }
 
 

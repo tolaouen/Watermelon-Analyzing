@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebCom2</title>
-    <link rel="stylesheet" href="{{ url_for( /app/static/css/style.css ) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <main>
         <aside class="asidenav">
-            
+            {% if current_user.is_authenticated %}
                 <div class="profile-status">
                     <div class="profile-name-status">
                         <h3>{{ current_user.full_name }}</h3>
-                        <small>{{ current_user.username }} : {{ current_user.role_id }}</small>
+                        <small><a href="{{ url_for('User.detail', user_id=current_user.id) }}">@{{ current_user.username }}</a></small>
                     </div>
                     <div>
-                        <img src="/app/static/images/profile.jpeg" alt="Images">
+                        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Images">
                     </div>
                     
                 </div>
                 <div>
                     <div class="aside-link">
                         <ul>
-                            <li><a href="{{ url_for('users.index') }}">Dashboards</a></li>
-                            <li><a href="{{ url_for('dashboard.diagnose')}}">Diagnoses</a></li>
-                            <li><a href="{{ url_for('dashboard.result')}}">Analysis</a></li>
+                            <li><a href="{{ url_for('User.index') }}">Dashboards</a></li>
+                            <li><a href="{{ url_for('disease.index')}}">Analyst</a></li>
+                            <li><a href="{{ url_for('disease.create') }}">Insert Diagnose</a></li>
                         </ul>
                     </div>
 
@@ -34,6 +34,7 @@
                     </div>
               
             </div>
+            {% endif %}
         </aside>
     </main>
 
@@ -51,8 +52,7 @@
         {% endwith %}
 
         {% block content %}{% endblock %}
-        {% block content %}{% endblock % }
     </section>
-
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

@@ -1,37 +1,55 @@
 
-{% extends 'layout/base.html' %}
+{% extends "layout/base.html" %}
+
 {% block content %}
-    <h2 class="text-h2">Diagnosis Results</h2>
-    {% if results %}
-    <div class="table-diagnose">
-        <table>
+<div>
+    <nav class="nav-bar">
+        <div class="nav-link">
+            <ul>
+                <li><a href="{{ url_for('User.index') }}">User</a></li>
+                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
+                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
+                <li><a href="{{ url_for('module.index') }}">Module</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<h2>Diagnosis Results</h2>
+<p><strong>Your symptoms:</strong> {{ symptoms|join(', ') }}</p>
+
+{% if results %}
+<div class="table-diagnose">
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Disease</th>
+            <th>Match %</th>
+            <th>Symptoms</th>
+            <th>Causes</th>
+            <th>Treatments</th>
+            <th>Prevention</th>
+        </tr>
+        {% for result in results %}
             <tr>
-                <th>#</th>
-                <th>Disease</th>
-                <th>Match %</th>
-                <th>Symptoms</th>
-                <th>Causes</th>
-                <th>Treatments</th>
-                <th>Prevention</th>
-                <th>Created At</th>
-                <th>Action</th>
+                <td>{{ loop.index }}</td>
+                <td>{{ result.name }}</td>
+                <td>{{ "%.1f"|format(result.match_score) }}%</td>
+                <td>{{ result.symptoms|join(', ') }}</td>
+                <td>{{ result.causes }}</td>
+                <td>{{ result.treatments }}</td>
+                <td>{{ result.prevention }}</td>
             </tr>
-            {% for result in results %}
-                <tr>
-                    <td>{{ result.id|length + 1 }}</td>
-                    <td>{{ result.name }}</td>
-                    <td>{{ result.match_percentage }}%</td>
-                    <td>{{ result.symptoms }}</td>
-                    <td>{{ result.causes }}</td>
-                    <td>{{ result.treatments }}</td>
-                    <td>{{ result.prevention }}</td>
-                    <td>{{ result.created_at }}</td>
-                    <td><button class="button-view"><a href="{{ url_for('dashboad.detail, disease_id=disease.id') }}">View</a></button></td>
-                </tr>
-            {% endfor %}
-        </table>
-    </div>
-    {% else %}
-        <p class="text-p">No matching diseases found.</p>
-    {% endif %}
+        {% endfor %}
+    </table>
+</div>
+{% else %}
+<p class="text-p">No matching diseases found for the given symptoms.</p>
+{% endif %}
+
+<div class="create-form-button">
+    <a href="{{ url_for('disease.index') }}">
+        <button type="button">Diagnose Again</button>
+    </a>
+</div>
 {% endblock %}

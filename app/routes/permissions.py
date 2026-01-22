@@ -11,7 +11,7 @@ def index():
     permissions = PermissionService.get_permission_all()
     return render_template("permissions/index.html", permissions=permissions)
 
-@permission_router.route("/<int: permission_id>")   
+@permission_router.route("/<int:permission_id>")   
 @login_required
 def detail(permission_id: int):
     permission = PermissionService.get_permission_by_id(permission_id)
@@ -31,13 +31,13 @@ def create():
             "code": form.code.data,
             "description": form.description.data
         }
-        module_id = form.module_id.data or []
+        module_id = form.module.data
         permission = PermissionService.create_permission(data, module_id)
         flash(f"Permission {permission.name} created successfully", "success")
-        return redirect(url_for("permissions.index"))
+        return redirect(url_for("Permission.index"))
     return render_template("permissions/create.html", form=form)
 
-@permission_router.route("/<int: permission_id>/edit", methods=["GET", "POST"])
+@permission_router.route("/<int:permission_id>/edit", methods=["GET", "POST"])
 @login_required
 def edit(permission_id: int):
     permission = PermissionService.get_permission_by_id(permission_id)
@@ -51,13 +51,13 @@ def edit(permission_id: int):
             "code": form.code.data,
             "description": form.description.data
         }
-        module_id = form.module_id.data or []
-        PermissionService.update_permission(data, permission, module_id)
+        module_id = form.module.data
+        PermissionService.update_permission(permission, data, module_id)
         flash(f"Permission {permission.name} updated successfully", "success")
-        return redirect(url_for("permissions.detail", permission_id=permission.id))
+        return redirect(url_for("Permission.detail", permission_id=permission.id))
     return render_template("permissions/edit.html", form=form, permission=permission)
 
-@permission_router.route("/<int: permission_id>/delete", methods=["GET"])
+@permission_router.route("/<int:permission_id>/delete", methods=["GET"])
 @login_required
 def delete_confirm(permission_id: int):
 
@@ -68,7 +68,7 @@ def delete_confirm(permission_id: int):
     form = DeletePermissionForm()
     return render_template("permissions/delete.html", permission=permission, form=form)
 
-@permission_router.route("/<int: permission_id>/delete", methods=["POST"])
+@permission_router.route("/<int:permission_id>/delete", methods=["POST"])
 @login_required
 def delete(permission_id: int):
     permission = PermissionService.get_permission_by_id(permission_id)
@@ -76,5 +76,4 @@ def delete(permission_id: int):
         abort(404, "Permission Not Found")
     PermissionService.delete_permission(permission)
     flash(f"Permission {permission.name} deleted successfully", "success")
-    return redirect(url_for("permissions.index"))
-
+    return redirect(url_for("Permission.index"))

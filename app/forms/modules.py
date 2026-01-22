@@ -22,7 +22,7 @@ class ModuleCreateForm(FlaskForm):
     submit = SubmitField("Create")
 
     def validate_name(self, name):
-        existing_module = db.sessoin.scalar(db.select(Module).filter_by(name=name.data))
+        existing_module = db.session.scalar(db.select(Module).filter_by(name=name.data))
         if existing_module:
             raise ValidationError("Module name already exists. Please choose a different name.")
         
@@ -45,14 +45,16 @@ class UpdateModuleForm(FlaskForm):
     def __init__(self, original_module, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.original_module = original_module
+        # Set initial form data
+        self.name.data = original_module.name
+        self.description.data = original_module.description
 
     def validate_name(self, name):
         if name.data != self.original_module.name:
-            existing_module = db.sessoin.scalar(db.select(Module).filter_by(name=name.data))
+            existing_module = db.session.scalar(db.select(Module).filter_by(name=name.data))
 
             if existing_module:
                 raise ValidationError("Module name already exists. Please choose a different name.")
             
 class DeleteModuleForm(FlaskForm):
     submit = SubmitField("Delete")
-    

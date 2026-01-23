@@ -55,12 +55,14 @@ class UpdateRoleForm(FlaskForm):
     def __init__(self, original_role, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.original_role = original_role
-        self.permissions.choices = [(p.id, f"{p.code} - {p.name}") for p in Permission.query.order_by(Permission.name).all()]
+        self.permissions.choices = [(0, "Select Permission")] + [(p.id, f"{p.code} - {p.name}") for p in Permission.query.order_by(Permission.name).all()]
         # Set initial form data
         self.name.data = original_role.name
         self.description.data = original_role.description
         if original_role.permissions:
             self.permissions.data = original_role.permissions[0].id
+        else:
+            self.permissions.data = 0
 
     def validate_name(self, name):
         if name.data != self.original_role.name:

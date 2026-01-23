@@ -15,25 +15,25 @@ class CreateDiseaseForm(FlaskForm):
     symptoms = TextAreaField(
         "Symptoms",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Enter symptoms"},
+        render_kw={"placeholder": "symptoms"},
     )
 
     causes = TextAreaField(
         "Causes",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Enter causes"},
+        render_kw={"placeholder": "causes"},
     )
 
     treatments = TextAreaField(
         "Treatments",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Enter treatments"},
+        render_kw={"placeholder": "treatments"},
     )
 
     prevention = TextAreaField(
         "Prevention",
         validators=[DataRequired()],
-        render_kw={"placeholder": "Enter prevention methods"},
+        render_kw={"placeholder": "prevention methods"},
     )
 
     submit = SubmitField("Save")

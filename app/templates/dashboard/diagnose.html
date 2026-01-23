@@ -2,33 +2,23 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-<div>
-    <nav class="nav-bar">
-        <div class="nav-link">
-            <ul>
-                <li><a href="{{ url_for('User.index') }}">User</a></li>
-                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
-                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('module.index') }}">Module</a></li>
-            </ul>
-        </div>
-    </nav>
-</div>
-
-<div class="create-form">
-    <h2>Diagnose Watermelon Disease</h2>
+<div class="create-form-container">
+    <h2 class="text-role">Diagnose Watermelon Disease</h2>
     <form method="POST">
         {{ form.csrf_token() }}
-        <div class="create-form-input">
-            {{ form.symptoms }}
-            {% if form.symptoms.errors %}
-                {% for error in form.symptoms.errors %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
-        <div class="create-form-button">
-            <button type="submit">Search</button>
+        <div class="form-search">
+            <div class="create-form-input">
+                {{ form.symptoms }}
+                {% if form.symptoms.errors %}
+                    {% for error in form.symptoms.errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="form-search-button">
+                <button type="submit">🔎 Search</button>
+            </div>
+                        
         </div>
     </form>
 </div>

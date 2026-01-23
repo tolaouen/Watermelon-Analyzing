@@ -47,9 +47,7 @@
 <p class="text-p">No matching diseases found for the given symptoms.</p>
 {% endif %}
 
-<div class="create-form-button">
-    <a href="{{ url_for('disease.index') }}">
-        <button type="button">Diagnose Again</button>
-    </a>
+<div class="form-submit-diagnose">
+    <button type="submit" id="cancel"><a href="{{ url_for('disease.index') }}">Diagnose Again</a></button>
 </div>
 {% endblock %}

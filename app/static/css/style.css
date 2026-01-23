@@ -271,9 +271,9 @@
     padding-left: 10px;
     border-radius: 5px;
 }
-.create-form-input-check {
-    width: 300px;
-    height: 25px;
+.create-form-input-check select{
+    width: 200px;
+    height: 30px;
     padding-left: 10px;
     border-radius: 5px;
     gap: 10px;
@@ -301,7 +301,7 @@
     border-radius: 10px;
     box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
     width: 600px;
-    height: 200px;
+    height: 300px;
 }
 .card-content-head ul {
     display: flex;
@@ -359,6 +359,7 @@
     border: none;
     border-radius: 5px;
     color: white;
+    margin-left: 0;
 }
 .back-button button:hover {
     box-shadow: 1px 1px 9px 1px rgba(146, 47, 179, 0.901);
@@ -720,7 +721,68 @@
     border-radius: 10px;
 }
 
+.form-search {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
 
+
+.form-search-button button {
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.form-submit-diagnose button{
+    width: 150px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: gray;
+    font-weight: bold;
+}
+
+.form-submit-diagnose a {
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+}
+
+.form-submit-diagnose button:hover {
+    box-shadow: 1px 1px 9px 1px gray;
+}
+
+.create-form-input-textarea textarea {
+    width: 300px;
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.create-form-edit-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-form-edit-3{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-form-container {
+    margin-top: 100px;
+}
 
 
 

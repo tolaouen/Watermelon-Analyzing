@@ -8,14 +8,13 @@ class ModuleCreateForm(FlaskForm):
     name = StringField(
         "Module Name",
         validators=[DataRequired(), Length(min=3, max=50)],
-        render_kw={"placeholder": "eg. Knowledge Base", "autocomplete": "off"},
+        render_kw={"placeholder": "Module Name"},
         filters=[lambda x: x.strip() if isinstance(x, str) else x],
     )
 
     description = TextAreaField(
         "Description",
-        validators=[Length(max=200)],
-        render_kw={"placeholder": "What is module use for? (optional)"},
+        render_kw={"placeholder": "Description"},
         filters=[lambda x: x.strip() if isinstance(x, str) else x],
     )
 
@@ -30,7 +29,6 @@ class UpdateModuleForm(FlaskForm):
     name = StringField(
         "Module Name",
         validators=[DataRequired(), Length(min=3, max=50)],
-        render_kw={"autocomplete": "off"},
         filters=[lambda x: x.strip() if isinstance(x, str) else x],
     )
 

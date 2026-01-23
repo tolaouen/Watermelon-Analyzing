@@ -14,7 +14,7 @@
     </nav>
 </div>
 
-<div class="create-form">
+<div class="create-form-container">
     <form method="post" novalidate>
         {{ form.csrf_token() }}
     <div class="create-form-edit">
@@ -36,7 +36,7 @@
             {% endif %}
         </div>
 
-        <div class="create-form-input">
+        <div class="create-form-input-check">
             {{ form.module }}
             {% if form.module.errors %}
             {% for error in form.module.errors %}
@@ -45,7 +45,7 @@
             {% endif %}
         </div>
 
-        <div class="create-form-input">
+        <div class="create-form-input-textarea">
             {{ form.description }}
             {% if form.description.errors %}
             {% for error in form.description.errors %}
@@ -56,10 +56,6 @@
 
         <div class="create-form-button">
             {{ form.submit(id="save", value="Save") }}
-        </div>
-
-        <div class="create-form-button">
-            <button type="button" id="cancel"><a href="{{ url_for('Permission.index') }}">Cancel</a></button>
         </div>
     </div>
     </form>

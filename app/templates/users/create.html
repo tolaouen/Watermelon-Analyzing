@@ -13,71 +13,79 @@
     </nav>
 </div>
 
-<div>
+<div class="create-form-container">
     <form class="create-form" method="post" novalidate>
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        
-        <div class="create-form-input">
-            {{ form.username }}
-            {% if form.username.errors %}
-            {% for error in form.username.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-            {% endif %}
-        </div>
+    <div class="create-form-edit">
+           <div>
+               <div class="create-form-input">
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                    {% for error in form.username.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
 
-        <div class="create-form-input">
-            {{ form.email }}
-            {% if form.email.errors %}
-            {% for error in form.email.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="create-form-edit-2">
+                <div class="create-form-input">
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    {% for error in form.email.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
 
-        <div class="create-form-input">
-            {{ form.full_name }}
-            {% if form.full_name.errors %}
-            {% for error in form.full_name.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-            {% endif %}
-        </div>
+                <div class="create-form-input">
+                    {{ form.full_name }}
+                    {% if form.full_name.errors %}
+                    {% for error in form.full_name.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="create-form-edit-3">
+                <div>
+                    {{ form.is_active }}
+                    <label for="is_active">Is Active</label>
+                </div>
 
-        <div>
-            {{ form.is_active }}
-            <label for="is_active">Is Active</label>
-        </div>
+                <div class="create-form-input-check">
+                    {{ form.role_id }}
+                    {% if form.role_id.errors %}
+                    {% for error in form.role_id.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
 
-        <div class="create-form-input-check">
-            {{ form.role_id }}
-            {% if form.role_id.errors %}
-            {% for error in form.role_id.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-            {% endif %}
-        </div>
+            <div class="create-form-edit-2">
+                <div class="create-form-input">
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                    {% for error in form.password.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
 
-        <div class="create-form-input">
-            {{ form.password }}
-            {% if form.password.errors %}
-            {% for error in form.password.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-            {% endif %}
-        </div>
+                <div class="create-form-input">
+                    {{ form.confirm_password }}
+                    {% if form.confirm_password.errors %}
+                    {% for error in form.confirm_password.errors %}
+                        <div class="error">{{ error }}</div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
 
-        <div class="create-form-input">
-            {{ form.confirm_password }}
-            {% if form.confirm_password.errors %}
-            {% for error in form.confirm_password.errors %}
-                <div class="error">{{ error }}</div>
-            {% endfor %}
-            {% endif %}
-        </div>
-
-        <div class="create-form-button">
-            <input type="submit" id="save" value="Save">
+            <div class="create-form-button">
+                <input type="submit" id="save" value="Save">
+            </div>
         </div>
     </form>
 </div>

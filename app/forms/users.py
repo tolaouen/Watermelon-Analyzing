@@ -17,7 +17,7 @@ def strong_password(form, field):
         not re.search(r"[0-9]", password) or
         not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password)):
         raise ValidationError(
-            'Password must be at least 8 characters long and include an uppercase letter, ''a lowercase letter, a number, and a special character.'
+            'Your Password Not Strong Enough.'
             )
 
 class UserCreateForm(FlaskForm):

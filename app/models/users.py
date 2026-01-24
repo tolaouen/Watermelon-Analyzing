@@ -36,10 +36,10 @@ class User(db.Model, UserMixin):
         """Check if user has specific role"""
         return any(role.name == role_name for role in self.roles)
     
-    def has_permission(self, permission_name):
+    def has_permission(self, permission_code):
         """Check if user has specific permission through roles"""
         for role in self.roles:
-            if any(permission.name == permission_name for permission in role.permissions):
+            if any(permission.code == permission_code for permission in role.permissions):
                 return True
         return False
     
@@ -47,3 +47,19 @@ class User(db.Model, UserMixin):
     def is_admin(self):
         """Quick admin check"""
         return self.has_role('admin')
+
+    def can_access(self, permission_code):
+        """Check if user has specific permission by code"""
+        return self.has_permission(permission_code)
+
+    def require_permission(self, permission_code):
+        """Raise exception if user doesn't have permission"""
+        if not self.can_access(permission_code):
+            from flask import abort
+            abort(403, f"Permission denied: {permission_code}")
+
+    def require_role(self, role_name):
+        """Raise exception if user doesn't have role"""
+        if not self.has_role(role_name):
+            from flask import abort
+            abort(403, f"Role required: {role_name}")

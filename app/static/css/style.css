@@ -1,6 +1,6 @@
 * {
-    background-color: white;
-    color: black;
+    background-color: #e1edeb;
+    color: rgb(14, 13, 13);
 }
 .dark-mode {
     background-color: #121212;
@@ -15,10 +15,11 @@
     position: fixed;
     top: 10px;
     right: 5px;
-    border: 1px solid black;
+    border: none;
     border-radius: 20px;
     padding: 30px;
-
+    filter: drop-shadow(1px 1px 9px 1px rgb(114, 85, 172));
+    box-shadow: 1px 1px 9px 1px rgb(209, 181, 181);
 }
 .profile-status {
     display: flex;
@@ -113,7 +114,7 @@
 /* users/index.html */
 .nav-bar {
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 .nav-link ul {
     display: flex;
@@ -122,6 +123,10 @@
     justify-content: flex-start;
     position: fixed;
     top: 10px;
+    width: 1200px;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 9px 1px rgb(114, 85, 172);
 }
 
 .nav-link li {
@@ -132,10 +137,12 @@
 .nav-link a {
     color: black;
     text-decoration: none;
+    padding: 10px;
 }
 .nav-link ul li a.active {
     color: #007bff;
     font-weight: bold;
+    text-decoration: 5px underline #007bff;
 }
 .button-submit {
     margin-left: 30px;
@@ -188,7 +195,7 @@
     align-items: center;
     margin-top: 20px;
     border-bottom: 1px dotted black;
-    width: 1060px;
+    width: 1080px;
 }
 .image-view {
     position: relative;
@@ -787,6 +794,57 @@
 .create-form-container {
     margin-top: 100px;
 }
+
+
+/* Resposible web page */
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+
+    .nav-link ul {
+        width: 400px;
+    }
+    
+    .list-user {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    .nav-link ul {
+        width: 600px;
+    }
+    .list-user {
+        width: 600px;
+    }
+
+
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+
+    .nav-link ul {
+        width: 800px;
+    }
+    .list-user {
+        width: 800px;
+    }
+
+
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1920px) {
+
+    .nav-link ul {
+        width: 1100px;
+    }
+    .list-user {
+        width: 1000px;
+    }
+
+}
+
+
 
 
 

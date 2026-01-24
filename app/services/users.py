@@ -28,6 +28,11 @@ class UserService:
             role = Role.query.get(role_id)
             if role:
                 user.roles = [role]
+        else:
+            # Assign default 'user' role if no role specified
+            default_role = Role.query.filter_by(name='user').first()
+            if default_role:
+                user.roles = [default_role]
 
         db.session.add(user)
         db.session.commit()
@@ -42,11 +47,16 @@ class UserService:
 
         if password:
             user.set_password(password)
-        
-        if role_id:
+
+        if role_id is not None:
             role = Role.query.get(role_id)
             if role:
                 user.roles = [role]
+            else:
+                # If role_id is provided but invalid, assign default user role
+                default_role = Role.query.filter_by(name='user').first()
+                if default_role:
+                    user.roles = [default_role]
 
         db.session.commit()
         return user

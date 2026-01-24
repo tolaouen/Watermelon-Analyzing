@@ -12,3 +12,4 @@ Flask-WTF
 pydantic
 WTForms
 Oracledb
+psycopg2

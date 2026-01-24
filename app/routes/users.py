@@ -2,6 +2,7 @@ from app.services.users import UserService
 from flask import Blueprint, render_template, redirect, abort, url_for, flash
 from app.forms.users import UserCreateForm, UserUpdateForm, UserDeleteForm
 from flask_login import login_required
+from app.decorators import permission_required
 
 from extensions import db
 
@@ -9,12 +10,14 @@ user_router = Blueprint("User", __name__, url_prefix="/user")
 
 @user_router.route("/")
 @login_required
+@permission_required('users:read')
 def index():
     users =  UserService.get_user_all()
     return render_template("users/index.html", users=users)
 
 @user_router.route("/<int:user_id>")
 @login_required
+@permission_required('users:read')
 def detail(user_id: int):
     user = UserService.get_user_by_id(user_id)
 
@@ -24,6 +27,7 @@ def detail(user_id: int):
 
 @user_router.route("/create", methods=["GET", "POST"])
 @login_required
+@permission_required('users:create')
 def create():
     form = UserCreateForm()
 
@@ -44,6 +48,7 @@ def create():
 
 @user_router.route("/<int:user_id>/edit", methods=["GET", "POST"])
 @login_required
+@permission_required('users:update')
 def edit(user_id: int):
     users = UserService.get_user_by_id(user_id)
     if users is None:
@@ -67,6 +72,7 @@ def edit(user_id: int):
 
 @user_router.route("/<int:user_id>/delete", methods=["GET"])
 @login_required
+@permission_required('users:delete')
 def delete_confirm(user_id: int):
     users = UserService.get_user_by_id(user_id)
     if users is None:
@@ -77,6 +83,7 @@ def delete_confirm(user_id: int):
 
 @user_router.route("/<int:user_id>/delete", methods=["POST"])
 @login_required
+@permission_required('users:delete')
 def delete(user_id: int):
     user = UserService.get_user_by_id(user_id)
     if user is None:

@@ -14,29 +14,31 @@
     </nav>
 </div>
 
-<div class="create-form">
+<div class="create-form-container">
     <form method="post" novalidate>
         {{ form.csrf_token() }}
-        <div class="create-form-input">
-            {{ form.name }}
-            {% if form.name.errors %}
-                {% for error in form.name.errors %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
+        <div class="create-form-edit">
+            <div class="create-form-input">
+                {{ form.name }}
+                {% if form.name.errors %}
+                    {% for error in form.name.errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="create-form-input">
-            {{ form.description }}
-            {% if form.description.errors %}
-                {% for error in form.description.errors %}
-                    <div>{{ error }}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
+            <div class="create-form-input-textarea">
+                {{ form.description }}
+                {% if form.description.errors %}
+                    {% for error in form.description.errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-        <div class="create-form-button">
-            {{ form.submit(id="change", value="Update") }}
+            <div class="create-form-button">
+                {{ form.submit(id="change", value="Update") }}
+            </div>
         </div>
     </form>
 </div>

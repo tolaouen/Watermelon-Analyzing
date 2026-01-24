@@ -3,25 +3,30 @@ from app.services.roles import RolesService
 from flask import Blueprint, abort, render_template, redirect, flash, url_for
 from flask_login import login_required
 from extensions import db
+from app.decorators import permission_required
 
 role_router = Blueprint("Role", __name__, url_prefix="/role")
 
 @role_router.route("/")
 @login_required
+@permission_required('roles:read')
 def index():
     roles = RolesService.get_role_all()
     return render_template("roles/index.html", roles=roles)
+
 @role_router.route("/<int:role_id>")
 @login_required
+@permission_required('roles:read')
 def detail(role_id: int):
     role = RolesService.get_role_by_id(role_id)
     if role is None:
         abort(404, "Role Not Found")
-    
+
     return render_template("roles/detail.html", role=role)
 
 @role_router.route("/create", methods=["GET", "POST"])
 @login_required
+@permission_required('roles:manage')
 def create():
 
     form = CreateRoleForm()
@@ -39,6 +44,7 @@ def create():
 
 @role_router.route("/<int:role_id>/edit", methods=["GET", "POST"])
 @login_required
+@permission_required('roles:manage')
 def edit(role_id: int):
     roles = RolesService.get_role_by_id(role_id)
 
@@ -46,7 +52,7 @@ def edit(role_id: int):
         abort(404, "Role Not Found")
 
     form = UpdateRoleForm(roles)
-    
+
     if form.validate_on_submit():
         data = {
             "name": form.name.data,
@@ -60,6 +66,7 @@ def edit(role_id: int):
 
 @role_router.route("/<int:role_id>/delete", methods=["GET"])
 @login_required
+@permission_required('roles:manage')
 def delete_confirm(role_id: int):
     roles = RolesService.get_role_by_id(role_id)
     if roles is None:
@@ -69,6 +76,7 @@ def delete_confirm(role_id: int):
 
 @role_router.route("/<int:role_id>/delete", methods=["POST"])
 @login_required
+@permission_required('roles:manage')
 def delete(role_id: int):
     roles = RolesService.get_role_by_id(role_id)
     if roles is None:

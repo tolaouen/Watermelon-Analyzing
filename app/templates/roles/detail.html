@@ -45,7 +45,7 @@
                 <div>
                     {% if role.permissions %}
                     <ul>
-                        {% for perm in role.permissions %}
+                        {% if perm in role.permissions %}
 
                         <li class="li-list">
                             {{ perm.name }} - {{ perm.code }}
@@ -54,7 +54,7 @@
                             </button>
                         </li>
                         <li class="desc">{{ perm.description }}</li>
-                        {% endfor %}
+                        {% endif %}
                     </ul>
                     {% else %}
                     <p>This role has no permissions yet.</p>

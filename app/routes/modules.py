@@ -2,6 +2,7 @@ from app.services.modules import ModuleService
 from app.forms.modules import ModuleCreateForm, UpdateModuleForm, DeleteModuleForm
 from flask import Blueprint, flash, redirect, render_template, abort, url_for
 from flask_login import login_required
+from app.decorators import permission_required
 
 module_route = Blueprint("module", __name__, url_prefix="/module")
 
@@ -23,6 +24,7 @@ def detail(module_id: int):
 
 @module_route.route("/create", methods=["GET", "POST"])
 @login_required
+@permission_required('modules:manage')
 def create():
     form = ModuleCreateForm()
 
@@ -38,6 +40,7 @@ def create():
 
 @module_route.route("/<int:module_id>/edit", methods=["GET", "POST"])
 @login_required
+@permission_required('modules:manage')
 def edit(module_id: int):
     module = ModuleService.get_module_by_id(module_id)
 
@@ -58,6 +61,7 @@ def edit(module_id: int):
 
 @module_route.route("/<int:module_id>/delete", methods=["GET"])
 @login_required
+@permission_required('modules:manage')
 def delete_confirm(module_id: int):
     module = ModuleService.get_module_by_id(module_id)
 
@@ -69,6 +73,7 @@ def delete_confirm(module_id: int):
 
 @module_route.route("/<int:module_id>/delete", methods=["POST"])
 @login_required
+@permission_required('modules:manage')
 def delete(module_id: int):
     module = ModuleService.get_module_by_id(module_id)
 

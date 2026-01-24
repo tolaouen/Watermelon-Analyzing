@@ -8,7 +8,7 @@ class Disease(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False, index=True)
 
-    symptoms = db.Column(db.Text, nullable=False)  # JSON array of symptoms
+    symptoms = db.Column(db.Text, nullable=False)  
     causes = db.Column(db.Text, nullable=False)
     treatments = db.Column(db.Text, nullable=False)
     prevention = db.Column(db.Text, nullable=False)

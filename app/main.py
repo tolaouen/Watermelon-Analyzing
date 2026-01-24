@@ -47,5 +47,9 @@ def create_app(config_class: type[Config] = Config):
         from app.models.diseases import Disease
         from app.models.modules import Module
         db.create_all()
-            
+
+        # Seed initial permissions and roles
+        from app.seed import seed_database
+        seed_database()
+
     return app

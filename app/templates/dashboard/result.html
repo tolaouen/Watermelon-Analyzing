@@ -2,22 +2,20 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
-<div>
-    <nav class="nav-bar">
-        <div class="nav-link">
-            <ul>
-                <li><a href="{{ url_for('User.index') }}">User</a></li>
-                <li><a href="{{ url_for('Role.index') }}">Role</a></li>
-                <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
-                <li><a href="{{ url_for('module.index') }}">Module</a></li>
-            </ul>
-        </div>
-    </nav>
+<div class="diagnose-list-page">
+
+    <div>
+        <h2>Diagnosis Results</h2>
+        <p>
+            <strong>Your symptoms:</strong> {{ symptoms|join(', ') }}
+        </p>
+    </div>
+
+    <div class="form-submit-diagnose">
+        <button type="submit" id="cancel"><a href="{{ url_for('disease.index') }}">⏎ Back</a></button>
+    </div>
+
 </div>
-
-<h2>Diagnosis Results</h2>
-<p><strong>Your symptoms:</strong> {{ symptoms|join(', ') }}</p>
-
 {% if results %}
 <div class="table-diagnose">
     <table>
@@ -29,6 +27,7 @@
             <th>Causes</th>
             <th>Treatments</th>
             <th>Prevention</th>
+            <th>Status</th>
         </tr>
         {% for result in results %}
             <tr>
@@ -39,6 +38,9 @@
                 <td>{{ result.causes }}</td>
                 <td>{{ result.treatments }}</td>
                 <td>{{ result.prevention }}</td>
+                <td class="link-tags">
+                    <a href="{{ url_for('disease.detail', disease_id=result.id) }}">🍉</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -47,7 +49,4 @@
 <p class="text-p">No matching diseases found for the given symptoms.</p>
 {% endif %}
 
-<div class="form-submit-diagnose">
-    <button type="submit" id="cancel"><a href="{{ url_for('disease.index') }}">Diagnose Again</a></button>
-</div>
 {% endblock %}

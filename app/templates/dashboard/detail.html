@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" type="image/png"/>
+    <title>Webcom2</title>
 </head>
 <body>
-    <div>
+    <div class="container">
         <button class="button-cancel"><a href="{{ url_for('disease.index') }}">⏎ Back</a></button>
-        <div class="card-detail-all">
-            <div class="card-detail">
+        <div class="paragraph-detail">
+            <div class="card-paragraph-detail">
                 <ul>
-                    <li>Disease: {{ disease.name }}</li>
-                    <li>Symptoms: {{ disease.symptoms }}</li>
-                    <li>Causes: {{ disease.causes }}</li>
-                    <li>Treatments: {{ disease.treatments }}</li>
-                    <li>Prevention: {{ disease.prevention }}</li>
-                    <li>created At: {{ disease.created_at }}</li>
+                    <li><strong>Disease:</strong> {{ disease.name }}</li>
+                    <li><strong>Symptoms: </strong>{{ disease.symptoms }}</li>
+                    <li><strong>Causes:</strong> {{ disease.causes }}</li>
+                    <li><strong>Treatments:</strong> {{ disease.treatments }}</li>
+                    <li><strong>Prevention:</strong> {{ disease.prevention }}</li>
+                    <li><strong>created At:</strong> {{ disease.created_at }}</li>
                 </ul>
             </div>
         </div>

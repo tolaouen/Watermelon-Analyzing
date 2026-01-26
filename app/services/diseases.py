@@ -61,15 +61,15 @@ class DiseaseService:
         return sorted(results, key=lambda x: x['match_score'], reverse=True)
     
     @staticmethod
-    def get_all_symptoms() -> List[Disease]:
+    def get_all_symptoms() -> List[str]:
         """Get all possible symptoms for form"""
         DiseaseService.seed_initial_diseases()
-        diseases = Disease.query.filter_by(name="Anthracnose").all()
+        diseases = Disease.query.all()
         all_symptoms = set()
 
         for disease in diseases:
             all_symptoms.update(disease.symptoms_list)
-        
+
         return sorted(list(all_symptoms))
     
     @staticmethod

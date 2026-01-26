@@ -33,7 +33,9 @@ class Disease(db.Model):
         disease_symptoms = self.symptoms_list
         if not disease_symptoms or not user_symptoms:
             return 0
-        
-        # Simple overlap calculation
-        matches = len(set(user_symptoms) & set(disease_symptoms))
+
+        # Simple overlap calculation (case insensitive)
+        user_symptoms_lower = [s.lower() for s in user_symptoms]
+        disease_symptoms_lower = [s.lower() for s in disease_symptoms]
+        matches = len(set(user_symptoms_lower) & set(disease_symptoms_lower))
         return (matches / len(disease_symptoms)) * 100

@@ -9,34 +9,34 @@
 </head>
 <body>
     <main>
+        {% if current_user.is_authenticated %}
         <aside class="asidenav">
-            {% if current_user.is_authenticated %}
-                <div class="profile-status">
-                    <div class="profile-name-status">
-                        <h3>{{ current_user.full_name }}</h3>
-                        <small><a href="{{ url_for('User.detail', user_id=current_user.id) }}">@{{ current_user.username }}</a></small>
-                    </div>
-                    <div>
-                        <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Images">
-                    </div>
-                    
+            <div class="profile-status">
+                <div class="profile-name-status">
+                    <h3>{{ current_user.full_name }}</h3>
+                    <small><a href="#">@{{ current_user.username }}</a></small>
                 </div>
                 <div>
-                    <div class="aside-link">
-                        <ul>
-                            <li><a href="{{ url_for('User.index') }}">Dashboards</a></li>
-                            <li><a href="{{ url_for('disease.index')}}">Analyst</a></li>
-                            <li><a href="{{ url_for('disease.create') }}">Insert Diagnose</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="button-logout">
-                        <button type="submit"><a href="{{ url_for('auth.logout')}}">Logout</a></button>
-                    </div>
-              
+                    <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Images">
+                </div>
             </div>
-            {% endif %}
+            <div>
+                <div class="aside-link">
+                    <ul>
+                        {% if current_user.is_admin %}
+                        <li><a href="{{ url_for('User.index') }}">Dashboards</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('disease.index')}}">Search</a></li>
+                        <li><a href="{{ url_for('disease.create') }}">Insert Diagnose</a></li>
+                    </ul>
+                </div>
+
+                <div class="button-logout">
+                    <button type="submit"><a href="{{ url_for('auth.logout')}}">Logout</a></button>
+                </div>
+            </div>
         </aside>
+        {% endif %}
     </main>
 
     <!-- Section extend to other page -->

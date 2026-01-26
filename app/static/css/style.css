@@ -672,6 +672,15 @@
     color: blue;
 }
 
+.diagnose-list-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 1120px;
+    margin-bottom: 20px;
+}
+
 /* Dashboard/diagnose.html */
 
 .text-h2 {
@@ -681,7 +690,7 @@
 
 .table-diagnose table {
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
 } 
 
 .table-diagnose th, td {
@@ -750,7 +759,7 @@
 }
 
 .form-submit-diagnose button{
-    width: 150px;
+    width: 100px;
     height: 30px;
     border: none;
     border-radius: 5px;
@@ -793,6 +802,29 @@
 
 .create-form-container {
     margin-top: 100px;
+}
+
+.link-tags a{
+    text-decoration: none;
+    color: blue;
+}
+
+.paragraph-detail {
+    margin: 50px;
+    font-size: 20px;
+    color: gray;
+    text-align: center;
+}
+
+.card-paragraph-detail ul{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;   
+    justify-content: center;
+}
+
+.card-paragraph-detail li {
+    list-style: none;
 }
 
 

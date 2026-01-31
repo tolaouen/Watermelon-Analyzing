@@ -1,6 +1,6 @@
 {% extends "layout/base.html" %}
     {% block content %}
-
+    {% if current_user.is_admin %}
     <div>
         <nav class="nav-bar">
             <div class="nav-link">
@@ -27,6 +27,8 @@
             </button>
         </div>
     </div>
+    {% endif %}
+    
     <div class="card-content">
         <div class="card-content-head">
             <ul>

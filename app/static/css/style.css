@@ -750,6 +750,12 @@
     margin-top: 20px;
 }
 
+.symptom-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 
 .form-search-button button {
     background-color: gray;

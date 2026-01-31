@@ -1,9 +1,35 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Length, ValidationError
 from extensions import db
 from app.models.diseases import Disease
 
+# Diagnosis Select form
+class DiagnosisForm(FlaskForm):
+    symptom_1 = SelectField(
+        "Symptom 1",
+        validators=[DataRequired()],
+        coerce=int,
+        render_kw={"placeholder": "Select First Symptom"},
+    )
+
+    symptom_2 = SelectField(
+        "Symptom 2",
+        validators=[DataRequired()],
+        coerce=int,
+        render_kw={"placeholder": "Select Second Symptom"},
+    )
+
+    symptom_3 = SelectField(
+        "Symptom 3",
+        validators=[DataRequired()],
+        coerce=int,
+        render_kw={"placeholder": "Select Third Symptom"},
+    )
+
+    submit = SubmitField("Analyzing")
+ 
+ 
 # Create Disease form
 class CreateDiseaseForm(FlaskForm):
     name = StringField(
@@ -86,14 +112,3 @@ class UpdateDiseaseForm(FlaskForm):
 # Delete Disease form
 class DeleteDiseaseForm(FlaskForm):
     submit = SubmitField("Delete")
-
-# Diagnosis form
-class DiagnosisForm(FlaskForm):
-    symptoms = StringField(
-        "Symptoms",
-        validators=[DataRequired()],
-        render_kw={"placeholder": "Search symptoms..."},
-    )
-
-    submit = SubmitField("Diagnose")
- 

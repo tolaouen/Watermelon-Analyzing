@@ -13,7 +13,7 @@ def index():
     symptoms = DiseaseService.get_all_symptoms()
 
     if form.validate_on_submit():
-        user_symptoms = [s.strip() for s in form.symptoms.data.split(',')]
+        user_symptoms = [s.strip() for s in [form.symptom1.data, form.symptom2.data, form.symptom3.data] if s.strip()]
         results = DiseaseService.diagnose_disease(user_symptoms)
         return render_template("dashboard/result.html", results=results, symptoms=user_symptoms)
 

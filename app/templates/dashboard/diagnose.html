@@ -7,18 +7,38 @@
     <form method="POST">
         {{ form.csrf_token() }}
         <div class="form-search">
-            <div class="create-form-input">
-                {{ form.symptoms }}
-                {% if form.symptoms.errors %}
-                    {% for error in form.symptoms.errors %}
-                        <div>{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
+            <div class="symptom-inputs">
+                <div class="create-form-input">
+                    {{ form.symptom1.label }}
+                    {{ form.symptom1 }}
+                    {% if form.symptom1.errors %}
+                        {% for error in form.symptom1.errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="create-form-input">
+                    {{ form.symptom2.label }}
+                    {{ form.symptom2 }}
+                    {% if form.symptom2.errors %}
+                        {% for error in form.symptom2.errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="create-form-input">
+                    {{ form.symptom3.label }}
+                    {{ form.symptom3 }}
+                    {% if form.symptom3.errors %}
+                        {% for error in form.symptom3.errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
             <div class="form-search-button">
                 <button type="submit">🔎 Search</button>
             </div>
-                        
         </div>
     </form>
 </div>

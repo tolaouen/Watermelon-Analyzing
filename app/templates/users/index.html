@@ -1,6 +1,7 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+{% if current_user.is_admin %}
 <div>
     <nav class="nav-bar">
         <div class="nav-link">
@@ -48,5 +49,6 @@
 {% else %}
 <p class="text-role">No User created. Please create user for role.</p>
 {% endfor %}
+{% endif %}
 
 {% endblock %}

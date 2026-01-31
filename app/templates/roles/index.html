@@ -1,15 +1,18 @@
 {% extends "layout/base.html" %}
 
 {% block content %}
+{% if current_user.is_admin %}
 <div>
     <nav class="nav-bar">
         <div class="nav-link">
+            
             <ul>
                 <li><a href="{{ url_for('User.index') }}">User</a></li>
                 <li><a href="{{ url_for('Role.index') }}">Role</a></li>
                 <li><a href="{{ url_for('Permission.index') }}">Permission</a></li>
                 <li><a href="{{ url_for('module.index') }}">Module</a></li>
             </ul>
+            
         </div>
     </nav>
 </div>
@@ -41,4 +44,5 @@
 {% else %}
 <p class="text-role">No Role created. Please create role for user.</p>
 {% endfor %}
+{% endif %}
 {% endblock %}

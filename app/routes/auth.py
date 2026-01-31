@@ -73,7 +73,7 @@ def register():
             password=password,
             role_id=default_role_id
         )
-
+        
         login_user(new_user)
         flash("Registration successful", "success")
         return redirect(url_for("User.index"))

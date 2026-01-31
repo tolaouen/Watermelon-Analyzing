@@ -14,7 +14,7 @@
             <div class="profile-status">
                 <div class="profile-name-status">
                     <h3>{{ current_user.full_name }}</h3>
-                    <small><a href="#">@{{ current_user.username }}</a></small>
+                    <small><a href="{{ url_for('User.detail', user_id=current_user.id)}}">@{{ current_user.username }}</a></small>
                 </div>
                 <div>
                     <img src="{{ url_for('static', filename='images/profile.jpeg') }}" alt="Images">

@@ -88,3 +88,21 @@ class DiseaseService:
         db.session.add(disease)
         db.session.commit()
         return disease
+
+    @staticmethod
+    def update_disease(disease: Disease, data: dict) -> Disease:
+        disease.name = data["name"]
+        disease.symptoms = json.dumps(data["symptoms"].split(','))
+        disease.causes = data["causes"]
+        disease.treatments = data["treatments"]
+        disease.prevention = data["prevention"]
+        db.session.commit()
+        return disease
+
+    @staticmethod
+    def delete_disease(disease: Disease) -> None:
+        db.session.delete(disease)
+        db.session.commit()
+
+    
+

@@ -7,13 +7,14 @@ class Disease(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False, index=True)
-
-    symptoms = db.Column(db.Text, nullable=False)  
     causes = db.Column(db.Text, nullable=False)
     treatments = db.Column(db.Text, nullable=False)
     prevention = db.Column(db.Text, nullable=False)
-
+    
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Relationship with table symptoms 
+    symptoms = db.relationship('Symptoms', secondary='disease_symptoms', back_populates='diseases')
     
     def __repr__(self):
         return f'<Disease {self.name}>'
@@ -34,7 +35,6 @@ class Disease(db.Model):
         if not disease_symptoms or not user_symptoms:
             return 0
 
-        # Simple overlap calculation (case insensitive)
         user_symptoms_lower = [s.lower() for s in user_symptoms]
         disease_symptoms_lower = [s.lower() for s in disease_symptoms]
         matches = len(set(user_symptoms_lower) & set(disease_symptoms_lower))

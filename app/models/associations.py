@@ -21,3 +21,12 @@ module_permissions = db.Table(
     db.Column("permission_id", db.Integer, db.ForeignKey("permissions.id"), primary_key=True),
     db.Column("created_at", db.DateTime, default=datetime.utcnow())
 )
+
+# Disease symptoms table
+
+disease_symptoms = db.Table(
+    'disease_symptoms',
+    db.Column('disease_id', db.Integer, db.ForeignKey('diseases.id'), primarykey=True),
+    db.Column('symptom_id', db.Integer, db.ForeignKey('symptoms.id'), primary_key=True),
+    db.Column('created_at', db.DateTime, default=datetime.utcnow())
+)

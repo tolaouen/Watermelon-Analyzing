@@ -18,24 +18,3 @@ class Disease(db.Model):
     
     def __repr__(self):
         return f'<Disease {self.name}>'
-    
-    @property
-    def symptoms_list(self):
-        """Get symptoms as list"""
-        if isinstance(self.symptoms, str):
-            try:
-                return json.loads(self.symptoms)
-            except:
-                return self.symptoms.split(',')
-        return self.symptoms
-    
-    def calculate_match_score(self, user_symptoms):
-        """Calculate match percentage with user symptoms"""
-        disease_symptoms = self.symptoms_list
-        if not disease_symptoms or not user_symptoms:
-            return 0
-
-        user_symptoms_lower = [s.lower() for s in user_symptoms]
-        disease_symptoms_lower = [s.lower() for s in disease_symptoms]
-        matches = len(set(user_symptoms_lower) & set(disease_symptoms_lower))
-        return (matches / len(disease_symptoms)) * 100

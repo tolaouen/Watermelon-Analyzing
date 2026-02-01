@@ -13,6 +13,7 @@ class Symptoms:
 
     # relation with disease table
     diseases = db.relationship('Diseases', secondary='disease_symptoms', back_populates='symptoms')
+    rules = db.relationship('Rules', secondary='rule_symptoms', back_populates='symptoms')
 
     
     def __repr__(self):

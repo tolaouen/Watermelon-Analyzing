@@ -18,9 +18,10 @@ Analys diseases and search for symptoms information about watermelon.
 ## ⚒️ Tools Devlops
 
 - Program: Python
-- Framework: Flask
+- Framework: Flask https://flask.palletsprojects.com/en/stable
+- Package: https://pypi.org/
 - Database: Sqlite3, Oracledb, PostreSQL
-- IDE: VS Code
+- IDE: VS Code https://code.visualstudio.com/
 
 
 ## ⚙️ Setup
@@ -32,5 +33,4 @@ Analys diseases and search for symptoms information about watermelon.
     - `source .venv/scripts/activate` for Window
 
 3. `pip install -r requirements.txt` Insall all package 
-4. `.env` encrypt file data
 

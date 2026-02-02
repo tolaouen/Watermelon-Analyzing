@@ -18,9 +18,10 @@ Analys diseases and search for symptoms information about watermelon.
 ## ⚒️ Tools Devlops
 
 - Program: Python
-- Framework: Flask
+- Framework: Flask https://flask.palletsprojects.com/en/stable
+- Package: https://pypi.org/
 - Database: Sqlite3, Oracledb, PostreSQL
-- IDE: VS Code
+- IDE: VS Code https://code.visualstudio.com/
 
 
 ## ⚙️ Setup

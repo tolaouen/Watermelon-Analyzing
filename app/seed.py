@@ -98,6 +98,13 @@ def seed_roles():
         db.session.add(user_role)
         print("Created role: user")
 
+    # Professional role - search + add diagnose
+    professional_role = Role.query.filter_by(name='professional').first()
+    if not professional_role:
+        professional_role = Role(name='professional', description='Professional with search and add diagnose access')
+        db.session.add(professional_role)
+        print("Created role: professional")
+
     # Admin role - full access
     admin_role = Role.query.filter_by(name='admin').first()
     if not admin_role:
@@ -111,28 +118,29 @@ def seed_roles():
     assign_permissions_to_roles()
 
 def assign_permissions_to_roles():
-    """Assign appropriate permissions to user and admin roles"""
+    """Assign appropriate permissions to user, professional, and admin roles"""
 
     user_role = Role.query.filter_by(name='user').first()
+    professional_role = Role.query.filter_by(name='professional').first()
     admin_role = Role.query.filter_by(name='admin').first()
 
     if user_role:
-        # User permissions - limited access
-        user_permissions = [
-            'users:read',
-            'users:create',
-            'diseases:read',
-            'modules:read',
-            'modules:manage',
-            'roles:read',
-            'permissions:read'
-        ]
-
+        # User permissions - search/diagnose only
+        user_permissions = ['diseases:read']
         for code in user_permissions:
             permission = Permission.query.filter_by(code=code).first()
             if permission and permission not in user_role.permissions:
                 user_role.permissions.append(permission)
                 print(f"Assigned {code} to user role")
+
+    if professional_role:
+        # Professional permissions - search + add/edit diagnoses
+        professional_permissions = ['diseases:read', 'diseases:manage']
+        for code in professional_permissions:
+            permission = Permission.query.filter_by(code=code).first()
+            if permission and permission not in professional_role.permissions:
+                professional_role.permissions.append(permission)
+                print(f"Assigned {code} to professional role")
 
     if admin_role:
         # Admin permissions - all permissions

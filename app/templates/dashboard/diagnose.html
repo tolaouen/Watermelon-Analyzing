@@ -3,13 +3,15 @@
 
 {% block content %}
 <div class="create-form-container">
-    <h2 class="text-role">Diagnose Watermelon Disease</h2>
     <form method="POST">
         {{ form.csrf_token() }}
         <div class="form-search">
             <div class="symptom-inputs">
-                <div class="create-form-input">
-                    {{ form.symptom1.label }}
+                <div>
+                    <h2 class="text-role">Diagnose Watermelon Disease</h2>
+                </div>
+                
+                <div class="create-form-input-check-symptom">
                     {{ form.symptom1 }}
                     {% if form.symptom1.errors %}
                         {% for error in form.symptom1.errors %}
@@ -17,8 +19,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="create-form-input">
-                    {{ form.symptom2.label }}
+                <div class="create-form-input-check-symptom">
                     {{ form.symptom2 }}
                     {% if form.symptom2.errors %}
                         {% for error in form.symptom2.errors %}
@@ -26,8 +27,7 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="create-form-input">
-                    {{ form.symptom3.label }}
+                <div class="create-form-input-check-symptom">
                     {{ form.symptom3 }}
                     {% if form.symptom3.errors %}
                         {% for error in form.symptom3.errors %}

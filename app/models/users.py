@@ -48,6 +48,16 @@ class User(db.Model, UserMixin):
         """Quick admin check"""
         return self.has_role('admin')
 
+    @property
+    def is_user(self):
+        """Check if user has basic user role (no admin, no professional)"""
+        return self.has_role('user') and not self.has_role('admin') and not self.has_role('professional')
+
+    @property
+    def is_professional(self):
+        """Check if user has professional role"""
+        return self.has_role('professional')
+
     def can_access(self, permission_code):
         """Check if user has specific permission by code"""
         return self.has_permission(permission_code)

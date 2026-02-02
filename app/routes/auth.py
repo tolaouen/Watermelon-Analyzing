@@ -20,8 +20,10 @@ def login():
             
             login_user(user)
             flash("Logged in successfully", "success")
-
-            return redirect(url_for("User.index"))
+            # Redirect by role: admin -> dashboards, others -> search/diagnose
+            if user.has_role("admin"):
+                return redirect(url_for("User.index"))
+            return redirect(url_for("disease.index"))
         flash("Invalid username or password", "danger")
         return redirect(url_for("auth.login"))
     return render_template("auth/login.html")
@@ -58,7 +60,7 @@ def register():
                 flash(error, "danger")
             return render_template("auth/register.html", username=username, email=email, full_name=full_name)
         
-        default_role = Role.query.filter_by(name="User").first()
+        default_role = Role.query.filter_by(name="user").first()
         default_role_id = default_role.id if default_role else None
 
         data = {
@@ -76,7 +78,9 @@ def register():
         
         login_user(new_user)
         flash("Registration successful", "success")
-        return redirect(url_for("User.index"))
+        if new_user.has_role("admin"):
+            return redirect(url_for("User.index"))
+        return redirect(url_for("disease.index"))
     return render_template("auth/register.html")
 
 @auth_route.route("/logout")

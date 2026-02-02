@@ -32,5 +32,4 @@ Analys diseases and search for symptoms information about watermelon.
     - `source .venv/scripts/activate` for Window
 
 3. `pip install -r requirements.txt` Insall all package 
-4. `.env` encrypt file data
 

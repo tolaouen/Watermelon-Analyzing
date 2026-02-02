@@ -9,5 +9,5 @@ __all__ = [
     'CreateRoleForm', 'UpdateRoleForm', 'DeleteRoleForm',
     'CreatePermissionForm', 'UpdatePermissionForm', 'DeletePermissionForm',
     'CreateDiseaseForm', 'UpdateDiseaseForm', 'DeleteDiseaseForm',
-    'ModuleCreateForm', 'UpdateModuleForm', 'DeleteModuleForm'
+    'ModuleCreateForm', 'UpdateModuleForm', 'DeleteModuleForm',
 ]

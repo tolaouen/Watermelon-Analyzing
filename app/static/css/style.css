@@ -7,6 +7,11 @@
     color: #e0e0e0;
 }
 
+.profile-full-name {
+    font-size: 20px;
+    color: rgb(230, 44, 100);
+}
+
 .asidenav {
     display: flex;
     flex-direction: column;
@@ -297,8 +302,21 @@
     border-radius: 5px;
     color: white;
 }
+.create-form-input-check-symptom select {
+    width: 400px;
+    height: 30px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.create-form-input-check-select select {
+    width: 310px;
+    height: 30px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
 .text-role {
-    color: gray;
+    color: rgb(104, 59, 208);
     font-size: 24px;
     font-weight: bold;
     text-align: center;
@@ -744,7 +762,7 @@
 .form-search {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 50px;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
@@ -753,13 +771,14 @@
 .symptom-inputs {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
+    gap: 30px;
+}   
 
 .form-search-button button {
-    background-color: gray;
+    background-color: rgb(215, 34, 104);
     color: white;
+    width: 100px;
+    height: 40px;
     border: none;
     border-radius: 5px;
 }

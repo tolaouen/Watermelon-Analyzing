@@ -6,25 +6,27 @@ from app.models.diseases import Disease
 
 # Diagnosis Select form
 class DiagnosisForm(FlaskForm):
-    symptom_1 = SelectField(
+    # These are populated dynamically in the view from the
+    # available symptom names.
+    symptom1 = SelectField(
         "Symptom 1",
         validators=[DataRequired()],
-        coerce=int,
         render_kw={"placeholder": "Select First Symptom"},
+        choices=[],
     )
 
-    symptom_2 = SelectField(
+    symptom2 = SelectField(
         "Symptom 2",
         validators=[DataRequired()],
-        coerce=int,
         render_kw={"placeholder": "Select Second Symptom"},
+        choices=[],
     )
 
-    symptom_3 = SelectField(
+    symptom3 = SelectField(
         "Symptom 3",
         validators=[DataRequired()],
-        coerce=int,
         render_kw={"placeholder": "Select Third Symptom"},
+        choices=[],
     )
 
     submit = SubmitField("Analyzing")

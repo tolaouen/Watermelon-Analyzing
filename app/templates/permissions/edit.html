@@ -36,7 +36,7 @@
                 {% endif %}
             </div>
 
-            <div class="create-form-input">
+            <div class="create-form-input-check-select">
                 {{ form.module }}
                 {% if form.module.errors %}
                 {% for error in form.module.errors %}
@@ -45,7 +45,7 @@
                 {% endif %}
             </div>
 
-            <div class="create-form-input">
+            <div class="create-form-input-textarea">
                 {{ form.description }}
                 {% if form.description.errors %}
                 {% for error in form.description.errors %}

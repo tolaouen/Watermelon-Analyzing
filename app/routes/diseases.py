@@ -9,6 +9,7 @@ disease_route = Blueprint("disease", __name__, url_prefix="/disease")
 
 @disease_route.route("/", methods=["GET", "POST"])
 @disease_route.route("/diagnose", methods=["GET", "POST"])
+@login_required
 @permission_required('diseases:read')
 def index():
     form = DiagnosisForm()
@@ -41,6 +42,7 @@ def index():
 
 
 @disease_route.route("/create", methods=["GET", "POST"])
+@login_required
 @permission_required('diseases:manage')
 def create():
     form = CreateDiseaseForm()
@@ -58,6 +60,7 @@ def create():
     return render_template("dashboard/create.html", form=form)
 
 @disease_route.route("/<int:disease_id>")
+@login_required
 @permission_required('diseases:read')
 def detail(disease_id: int):
     disease = DiseaseService.get_disease_by_id(disease_id)

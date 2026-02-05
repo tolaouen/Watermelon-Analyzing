@@ -11,31 +11,7 @@ class DiseaseService:
         if Disease.query.count() != 0:
             return
 
-        initial_diseases = [
-            {
-                "name": "Anthracnose",
-                "symptoms": [
-                    "Brown spots on leaves",
-                    "Angular spots on fruit",
-                    "Stem lesions",
-                ],
-                "causes": "Fungus Colletotrichum orbiculare, spread by rain and wind",
-                "treatments": "Fungicides like chlorothalonil, remove infected plants, crop rotation",
-                "prevention": "Use resistant varieties, avoid overhead watering, space plants properly",
-            },
-            {
-                "name": "Fusarium Wilt",
-                "symptoms": [
-                    "Wilting leaves",
-                    "Yellowing foliage",
-                    "Vascular discoloration",
-                ],
-                "causes": "Fungus Fusarium oxysporum, soil-borne",
-                "treatments": "No cure; remove affected plants, soil fumigation",
-                "prevention": "Resistant varieties, soil solarization, crop rotation",
-            },
-            # Add more diseases as needed...
-        ]
+        initial_diseases = []
 
         for data in initial_diseases:
             symptom_names = data.get("symptoms", [])

@@ -1,7 +1,7 @@
 from app.forms.diseases import CreateDiseaseForm, DeleteDiseaseForm, UpdateDiseaseForm, DiagnosisForm
 from app.services.diseases import DiseaseService
 from app.decorators import permission_required
-from flask import Blueprint, flash, abort, render_template, redirect, url_for
+from flask import Blueprint, flash, abort, render_template, redirect, url_for, request
 from flask_login import login_required
 
 
@@ -20,6 +20,17 @@ def index():
     form.symptom1.choices = choices
     form.symptom2.choices = choices
     form.symptom3.choices = choices
+
+    # If `symptoms` provided via querystring, show diagnosis results (GET linkable results)
+    symptoms_q = request.args.get('symptoms')
+    if symptoms_q:
+        symptoms_list = [s for s in symptoms_q.split(',') if s]
+        results = DiseaseService.diagnose_disease(symptoms_list)
+        return render_template(
+            "dashboard/result.html",
+            results=results,
+            symptoms=symptoms_list,
+        )
 
     if form.validate_on_submit():
         user_symptoms = [
@@ -67,4 +78,13 @@ def detail(disease_id: int):
     if disease is None:
         abort(404, "Disease Not Found")
 
-    return render_template("dashboard/detail.html", disease=disease)
+    # If the detail view was reached from the diagnosis results page,
+    # preserve a back link to return to that results page.
+    from_page = request.args.get('from_page')
+    symptoms_q = request.args.get('symptoms')
+    if from_page == 'result' and symptoms_q:
+        back_url = url_for('disease.index', symptoms=symptoms_q)
+    else:
+        back_url = url_for('disease.index')
+
+    return render_template("dashboard/detail.html", disease=disease, back_url=back_url)

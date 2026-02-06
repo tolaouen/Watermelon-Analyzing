@@ -39,7 +39,7 @@
                 <td>{{ result.treatments }}</td>
                 <td>{{ result.prevention }}</td>
                 <td class="link-tags">
-                    <a href="{{ url_for('disease.detail', disease_id=result.id) }}">🍉</a>
+                    <a href="{{ url_for('disease.detail', disease_id=result.id, from_page='result', symptoms=symptoms|join(',')) }}">🍉</a>
                 </td>
             </tr>
         {% endfor %}
